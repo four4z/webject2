@@ -12,7 +12,7 @@ const upload = multer();
 
 const app = express();
 const PORT = 3000;
-const url = "mongodbtoken///";
+const url = "mongodb+srv://webject2:SbtDTeIU9pIIs8b3@loginweb2.wtpq5wl.mongodb.net////";
 const client = new MongoClient(url);
 const secret = "GN0000";
 
