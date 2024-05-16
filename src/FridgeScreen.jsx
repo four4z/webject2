@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './FridgeScreen.css'; // Make sure to import the CSS file
 
 const FridgeScreen = () => {
   const [items, setItems] = useState([
@@ -9,6 +11,8 @@ const FridgeScreen = () => {
 
   const [newItem, setNewItem] = useState('');
   const [quantity, setQuantity] = useState(1);
+
+  const navigate = useNavigate();
 
   const addItem = () => {
     if (newItem) {
@@ -22,8 +26,16 @@ const FridgeScreen = () => {
     setItems(items.filter((_, i) => i !== index));
   };
 
+  const handleLogout = () => {
+    // Add your logout logic here
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
+    navigate('/signin');
+  };
+
   return (
     <div className="fridge-screen">
+      <button className="button-33 logout-button" onClick={handleLogout}>Logout</button>
       <h2>Fridge Inventory</h2>
       <div className="add-item">
         <input
