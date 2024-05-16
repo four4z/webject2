@@ -14,12 +14,16 @@
   letter-spacing: -0.2px;
   font-size: var(--ruler);
   color: var(--color-shadow);
+  min-height: 100vh;
 }
 
 /* Add more styles as needed */
 
-  body, html {
-    background-color: var(--color-bg);
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  height: 100vh;
   }
   
   body, p, input, select, textarea, button {

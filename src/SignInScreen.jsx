@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import styles from './RegisterScreen.module.css'; // Import the CSS module file
 
 const SignInScreen = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const SignInScreen = () => {
   };
 
   return (
-    <div className="signin-screen">
+    <div className={styles['register-screen']}>
       <h2>Sign In</h2>
       <form onSubmit={handleLoginSubmit}>
         <input type="email" placeholder="Email" required />
