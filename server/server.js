@@ -36,35 +36,6 @@ const connectDB = async () => {
     }
 }
 
-app.use(express.static(path.join(__dirname, '../client')));
-
-app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', './client/home.html'));
-});
-
-app.get('/inventory', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', './client/inventory.html'));
-});
-
-app.get('/add-item', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', './client/add-item.html'));
-});
-
-app.get('/edit-item', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', './client/edit-item.html'));
-});
-
-app.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', './client/profile.html'));
-});
-
-app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', './client/admin-dashboard.html'));
-});
-
-app.get('/', (req, res) => {
-    res.send({ message: 'MyFridgeInventory' });
-});
 
 const saltRounds = 5;
 const matchPassword = async (password, hash) => {
