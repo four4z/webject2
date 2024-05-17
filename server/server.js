@@ -1,67 +1,56 @@
-const cors = require('cors');
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const bcrypt = require('bcrypt');
-const path = require('path');
-const { MongoClient, ObjectId } = require('mongodb');
-const multer = require('multer');
-const { default: mongoose } = require('mongoose');
-const upload = multer();
-
 const app = express();
 const PORT = 3000;
-const url = "mongodb+srv://webject2:SbtDTeIU9pIIs8b3@loginweb2.wtpq5wl.mongodb.net////";
-const client = new MongoClient(url);
-const secret = "GN0000";
+const mongoose = require('mongoose');
+const multer = require('multer');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
+// MongoDB connection string
+const url = 'mongodb+srv://webject2:SbtDTeIU9pIIs8b3@loginweb2.wtpq5wl.mongodb.net/';
+
+// Connect to MongoDB using Mongoose
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Define Multer storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage });
+
+// Define salt rounds for bcrypt
+const saltRounds = 5;
+
+// Define middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    credentials: true,
-    origin: [`http://localhost:5500`]
-}));
 
-app.listen(PORT, async () => {
-    console.log(`Server started at port ${PORT}`);
+app.get('/', (req, res) => {
+    res.send("GET Request Called")
+})
+ 
+app.listen(PORT, function (err) {
+    if (err) console.log(err);
+    console.log("Server listening on PORT", PORT);
 });
-const connectDB = async () => {
-    try {
-        await client.connect();
-        console.log("Connected to DB");
-    } catch (err) {
-        console.log("Error", err);
-    }
-}
-
-
-const saltRounds = 5;
-const matchPassword = async (password, hash) => {
-    const isMatch = await bcrypt.compare(password, hash);
-    return isMatch;
-}
-const hashPassword = async (password) => {
-    try {
-        const salt = await bcrypt.genSalt(saltRounds);
-        const hashedPassword = await bcrypt.hash(password, salt);
-        return hashedPassword;
-    } catch (error) {
-        console.log(error);
-    }
-};
-
 // Sign Up
 app.post('/api/signup', upload.none(), async (req, res) => {
     try {
         const { email, username, password } = req.body;
-        await connectDB();
-        const findEmail = await client.db('MyFridgeInventory').collection('users').findOne({ email });
+        const db = client.db('MyFridgeInventory');
+        const findEmail = await db.collection('users').findOne({ email });
+
         if (findEmail) {
-            res.status(409).json({ error: 'Email already used!' });
-            return;
+            return res.status(409).json({ error: 'Email already used!' });
         }
+
         const createUser = {
             email,
             username,
@@ -70,15 +59,14 @@ app.post('/api/signup', upload.none(), async (req, res) => {
             role: 'user',
         };
 
-        await client.db('MyFridgeInventory').collection('users').insertOne(createUser);
+        await db.collection('users').insertOne(createUser);
         res.redirect('/profile');
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
-    } finally {
-        await client.close();
     }
 });
+
 
 // Login
 app.post('/api/login', upload.none(), async (req, res) => {
