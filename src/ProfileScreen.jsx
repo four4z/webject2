@@ -23,6 +23,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState } from 'react';
 import './ProfileScreen.css';
 
@@ -57,9 +68,9 @@ const ProfileScreen = () => {
   };
 
   return (
-    <div className="container rounded bg-white mt-5 mb-5">
+    <div className="profile-container container rounded bg-white mt-5 mb-5">
       <div className="row">
-        <div className="col-md-3 border-right">
+        <div className="col-md-3 border-right profile-picture-section">
           <div className="d-flex flex-column align-items-center text-center p-3 py-5">
             <img
               className="rounded-circle mt-5"
@@ -72,7 +83,7 @@ const ProfileScreen = () => {
             <span> </span>
           </div>
         </div>
-        <div className="col-md-5 border-right">
+        <div className="col-md-5 border-right profile-settings-section">
           <div className="p-3 py-5">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h4 className="text-right">Profile Settings</h4>
@@ -113,7 +124,6 @@ const ProfileScreen = () => {
                   onChange={handleChange}
                 />
               </div>
-
               {/* <div className="col-md-12">
                 <label className="labels">Address Line 1</label>
                 <input
@@ -169,7 +179,6 @@ const ProfileScreen = () => {
                   onChange={handleChange}
                 />
               </div> */}
-
               <div className="col-md-12">
                 <label className="labels">Email ID</label>
                 <input
@@ -181,7 +190,6 @@ const ProfileScreen = () => {
                   onChange={handleChange}
                 />
               </div>
-
               {/* <div className="col-md-12">
                 <label className="labels">Education</label>
                 <input
@@ -217,7 +225,6 @@ const ProfileScreen = () => {
                   onChange={handleChange}
                 />
               </div> */}
-
             </div>
             <div className="mt-5 text-center">
               <button className="btn btn-primary profile-button" type="button" onClick={handleSubmit}>
@@ -226,11 +233,11 @@ const ProfileScreen = () => {
             </div>
           </div>
         </div>
-        {/* <div className="col-md-4">
+        {/* <div className="col-md-4 experience-section">
           <div className="p-3 py-5">
             <div className="d-flex justify-content-between align-items-center experience">
               <span>Edit Experience</span>
-              <span className="border px-3 p-1 add-experience">
+              <span className="border px-3 p-1 add-experience add-experience-btn">
                 <i className="fa fa-plus"></i>&nbsp;Experience
               </span>
             </div>
@@ -266,4 +273,3 @@ const ProfileScreen = () => {
 };
 
 export default ProfileScreen;
-
