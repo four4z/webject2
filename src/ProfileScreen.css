@@ -1,0 +1,102 @@
+body {
+    background: rgb(99, 39, 120);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background: #fff;
+    border-radius: 10px;
+    max-width: 1000px;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-picture-section {
+    border-right: 1px solid #dee2e6;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-picture-section img {
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+.profile-settings-section,
+.experience-section {
+    padding-left: 30px;
+    flex-grow: 1;
+}
+
+.profile-settings-section {
+    border-right: 1px solid #dee2e6;
+    padding-right: 30px;
+}
+
+.profile-settings-section h4,
+.experience-section h4 {
+    margin-bottom: 20px;
+}
+
+.labels {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-control {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8;
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.profile-button:hover,
+.profile-button:focus,
+.profile-button:active {
+    background: #682773;
+    box-shadow: none;
+}
+
+.add-experience {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.add-experience .add-experience-btn {
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #BA68C8;
+    color: #BA68C8;
+}
+
+.add-experience .add-experience-btn:hover {
+    background: #BA68C8;
+    color: #fff;
+}
