@@ -1,4 +1,4 @@
-body {
+.profile-container {
     background: rgb(99, 39, 120);
     padding: 20px;
     display: flex;
@@ -99,4 +99,27 @@ body {
 .add-experience .add-experience-btn:hover {
     background: #BA68C8;
     color: #fff;
+}
+
+/* New styles added below */
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .profile-picture-section {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .profile-settings-section {
+        border-right: none;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .experience-section {
+        padding-left: 0;
+    }
 }

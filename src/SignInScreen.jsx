@@ -13,7 +13,7 @@ const SignInScreen = () => {
   };
 
   return (
-    <div className={styles['register-screen']}>
+    <div className={styles['register-screen-container']}>
       <h2>Sign In</h2>
       <form onSubmit={handleLoginSubmit}>
         <input type="email" placeholder="Email" required />

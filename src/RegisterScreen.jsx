@@ -43,7 +43,7 @@ const RegisterScreen = () => {
   };
 
   return (
-    <div className={styles['register-screen']}> {/* Apply CSS module class */}
+    <div className={styles['register-screen-container']}> {/* Apply CSS module class */}
       <h2>Register</h2>
       <form onSubmit={handleRegisterSubmit}>
         <input
