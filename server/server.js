@@ -9,6 +9,21 @@ const cookieParser = require('cookie-parser');
 
 // MongoDB connection string
 const url = 'mongodb+srv://webject2:SbtDTeIU9pIIs8b3@loginweb2.wtpq5wl.mongodb.net/';
+let client;
+let db;
+
+async function connectDB() {
+    try {
+        client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+        await client.connect();
+        db = client.db('MyFridgeInventory');
+        console.log("Connected to MongoDB");
+    } catch (error) {
+        console.error("Error connecting to MongoDB", error);
+    }
+}
+
+connectDB().catch(console.error);
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
