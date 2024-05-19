@@ -259,35 +259,57 @@ app.delete('/api/deleteuser/:id', async (req, res) => {
     }
 });
 
-// Add Fridge Item
-app.post('/admin/addItem', async (req, res) => {
+// Add Fridge
+app.post('/admin/addFridge', async (req, res) => {
     try {
-        const { itemName, quantity, expiryDate } = req.body;
+        const { name, owner } = req.body;
 
         if (!db) {
             console.error('Database connection not established');
             return res.status(500).json({ error: 'Database connection not established' });
         }
 
-        if (!itemName) {
-            return res.status(400).send({ message: "Please enter item name" });
+        if (!name || !owner) {
+            return res.status(400).send({ message: "Please enter fridge name and owner" });
         }
 
-        const itemData = {
-            itemName,
-            quantity,
-            expiryDate,
+        const fridgeData = {
+            name,
+            owner,
+            items: []
         };
 
-        const result = await db.collection("items").insertOne(itemData);
+        const result = await db.collection("fridges").insertOne(fridgeData);
         res.status(200).send({ result });
     } catch (error) {
         console.error('Error:', error);
     }
 });
 
-// Delete Fridge Item
-app.delete('/admin/deleteItem/:id', async (req, res) => {
+// Edit Fridge
+app.put('/admin/editFridge/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name } = req.body;
+
+        if (!db) {
+            console.error('Database connection not established');
+            return res.status(500).json({ error: 'Database connection not established' });
+        }
+
+        const result = await db.collection("fridges").updateOne(
+            { _id: new ObjectId(id) },
+            { $set: { name } }
+        );
+
+        res.status(200).send(result);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
+// Delete Fridge
+app.delete('/admin/deleteFridge/:id', async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -296,7 +318,56 @@ app.delete('/admin/deleteItem/:id', async (req, res) => {
             return res.status(500).json({ error: 'Database connection not established' });
         }
 
-        const result = await db.collection("items").deleteOne({ _id: new ObjectId(id) });
+        const result = await db.collection("fridges").deleteOne({ _id: new ObjectId(id) });
+        res.status(200).send(result);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
+// Add Fridge Item
+app.post('/admin/addItem', async (req, res) => {
+    try {
+        const { fridgeId, itemName, quantity, expiryDate } = req.body;
+
+        if (!db) {
+            console.error('Database connection not established');
+            return res.status(500).json({ error: 'Database connection not established' });
+        }
+
+        const newItem = {
+            _id: new ObjectId(),
+            itemName,
+            quantity,
+            expiryDate
+        };
+
+        const result = await db.collection("fridges").updateOne(
+            { _id: new ObjectId(fridgeId) },
+            { $push: { items: newItem } }
+        );
+
+        res.status(200).send(result);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
+// Delete Fridge Item
+app.delete('/admin/deleteItem/:fridgeId/:itemId', async (req, res) => {
+    try {
+        const { fridgeId, itemId } = req.params;
+
+        if (!db) {
+            console.error('Database connection not established');
+            return res.status(500).json({ error: 'Database connection not established' });
+        }
+
+        const result = await db.collection("fridges").updateOne(
+            { _id: new ObjectId(fridgeId) },
+            { $pull: { items: { _id: new ObjectId(itemId) } } }
+        );
+
         res.status(200).send(result);
     } catch (error) {
         console.error('Error:', error);
@@ -304,19 +375,19 @@ app.delete('/admin/deleteItem/:id', async (req, res) => {
 });
 
 // Edit Fridge Item
-app.post('/admin/editItem', async (req, res) => {
+app.put('/admin/editItem/:fridgeId/:itemId', async (req, res) => {
     try {
-        const { id, itemName, quantity, expiryDate } = req.body;
+        const { fridgeId, itemId } = req.params;
+        const { itemName, quantity, expiryDate } = req.body;
 
         if (!db) {
             console.error('Database connection not established');
             return res.status(500).json({ error: 'Database connection not established' });
         }
 
-        const updateItem = db.collection("items");
-        const result = await updateItem.updateOne(
-            { _id: new ObjectId(id) },
-            { $set: { itemName, quantity, expiryDate } }
+        const result = await db.collection("fridges").updateOne(
+            { _id: new ObjectId(fridgeId), "items._id": new ObjectId(itemId) },
+            { $set: { "items.$.itemName": itemName, "items.$.quantity": quantity, "items.$.expiryDate": expiryDate } }
         );
 
         res.status(200).send(result);
