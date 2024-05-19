@@ -1,8 +1,6 @@
-/* RegisterScreen.css */
-
 /* RegisterScreen.module.css */
 
-.register-screen {
+.register-screen-container {
   --ruler: 16px;
   --color-red: #AE1100;
   --color-bg: #EBECF0;
@@ -19,117 +17,115 @@
 
 /* Add more styles as needed */
 
-body, html {
-  margin: 0;
-  padding: 0;
+.register-screen-container,
+p,
+input,
+select,
+textarea,
+button {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.2px;
+  font-size: var(--ruler);
+}
+
+div,
+p {
+  color: var(--color-shadow);
+  text-shadow: 1px 1px 1px var(--color-white);
+}
+
+form {
+  padding: var(--ruler);
+  width: calc(var(--ruler) * 20);
+  margin: 0 auto;
+}
+
+.segment {
+  padding: calc(var(--ruler) * 2) 0;
+  text-align: center;
+}
+
+button,
+input {
+  border: 0;
+  outline: 0;
+  font-size: var(--ruler);
+  border-radius: calc(var(--ruler) * 20);
+  padding: var(--ruler);
   background-color: var(--color-bg);
-  height: 100vh;
+  text-shadow: 1px 1px 0 var(--color-white);
+}
+
+label {
+  display: block;
+  margin-bottom: calc(var(--ruler) * 1.5);
+  width: 100%;
+}
+
+input {
+  margin-right: calc(var(--ruler) / 2);
+  box-shadow: inset 2px 2px 5px var(--color-shadow), inset -5px -5px 10px var(--color-white);
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    box-shadow: inset 1px 1px 2px var(--color-shadow), inset -1px -1px 2px var(--color-white);
   }
-  
-  body, p, input, select, textarea, button {
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: -0.2px;
-    font-size: var(--ruler);
+}
+
+button {
+  color: #61677C;
+  font-weight: bold;
+  box-shadow: -5px -5px 20px var(--color-white), 5px 5px 20px var(--color-shadow);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    box-shadow: -2px -2px 5px var(--color-white), 2px 2px 5px var(--color-shadow);
   }
-  
-  div, p {
-    color: var(--color-shadow);
-    text-shadow: 1px 1px 1px var(--color-white);
+
+  &:active {
+    box-shadow: inset 1px 1px 2px var(--color-shadow), inset -1px -1px 2px var(--color-white);
   }
-  
-  form {
-    padding: var(--ruler);
-    width: calc(var(--ruler) * 20);
-    margin: 0 auto;
-  }
-  
-  .segment {
-    padding: calc(var(--ruler) * 2) 0;
-    text-align: center;
-  }
-  
-  button,
-  input {
-    border: 0;
-    outline: 0;
-    font-size: var(--ruler);
-    border-radius: calc(var(--ruler) * 20);
-    padding: var(--ruler);
-    background-color: var(--color-bg);
-    text-shadow: 1px 1px 0 var(--color-white);
-  }
-  
-  label {
-    display: block;
-    margin-bottom: calc(var(--ruler) * 1.5);
-    width: 100%;
-  }
-  
-  input {
+
+  .icon {
     margin-right: calc(var(--ruler) / 2);
-    box-shadow: inset 2px 2px 5px var(--color-shadow), inset -5px -5px 10px var(--color-white);
-    width: 100%;
-    box-sizing: border-box;
-    transition: all 0.2s ease-in-out;
-    appearance: none;
-    -webkit-appearance: none;
-  
-    &:focus {
-      box-shadow: inset 1px 1px 2px var(--color-shadow), inset -1px -1px 2px var(--color-white);
-    }
   }
-  
-  button {
-    color: #61677C;
-    font-weight: bold;
-    box-shadow: -5px -5px 20px var(--color-white), 5px 5px 20px var(--color-shadow);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    font-weight: 600;
-  
-    &:hover {
-      box-shadow: -2px -2px 5px var(--color-white), 2px 2px 5px var(--color-shadow);
-    }
-  
-    &:active {
-      box-shadow: inset 1px 1px 2px var(--color-shadow), inset -1px -1px 2px var(--color-white);
-    }
-  
-    .icon {
-      margin-right: calc(var(--ruler) / 2);
-    }
-  
-    &.unit {
-      border-radius: calc(var(--ruler) / 2);
-      line-height: 0;
-      width: calc(var(--ruler) * 3);
-      height: calc(var(--ruler) * 3);
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 calc(var(--ruler) / 2);
-      font-size: calc(var(--ruler) * 1.2);
-  
-      .icon {
-        margin-right: 0;
-      }
-    }
-  
-    &.red {
-      display: block;
-      width: 100%;
-      color: var(--color-red);
-    }
-  }
-  
-  .input-group {
-    display: flex;
+
+  &.unit {
+    border-radius: calc(var(--ruler) / 2);
+    line-height: 0;
+    width: calc(var(--ruler) * 3);
+    height: calc(var(--ruler) * 3);
+    display: inline-flex;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start;
-  
-    label {
-      margin: 0;
-      flex: 1;
+    margin: 0 calc(var(--ruler) / 2);
+    font-size: calc(var(--ruler) * 1.2);
+
+    .icon {
+      margin-right: 0;
     }
   }
-  
+
+  &.red {
+    display: block;
+    width: 100%;
+    color: var(--color-red);
+  }
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  label {
+    margin: 0;
+    flex: 1;
+  }
+}
