@@ -22,7 +22,7 @@ app.use(cors({ credentials: true, origin: ['http://localhost:5500'] }));
 
 async function connectDB() {
     try {
-        client = new MongoClient('mongodb+srv://webject2:SbtDTeIU9pIIs8b3@loginweb2.wtpq5wl.mongodb.net/', { useUnifiedTopology: true });
+        client = new MongoClient('mongodb://127.0.0.1:27017', { useUnifiedTopology: true });
         await client.connect();
         db = client.db('webject');
         console.log('Connected to MongoDB');
@@ -328,22 +328,26 @@ app.delete('/admin/deleteFridge/:id', async (req, res) => {
 // Add Fridge Item
 app.post('/admin/addItem', async (req, res) => {
     try {
-        const { fridgeId, itemName, quantity, expiryDate } = req.body;
+        const { FridgeID, Itemname, Quantity, expiryDate } = req.body;
 
         if (!db) {
             console.error('Database connection not established');
             return res.status(500).json({ error: 'Database connection not established' });
         }
 
+        if (!FridgeID || !Itemname || !Quantity || !expiryDate) {
+            return res.status(400).send({ message: "Please provide all required fields" });
+        }
+
         const newItem = {
             _id: new ObjectId(),
-            itemName,
-            quantity,
+            Itemname,
+            Quantity,
             expiryDate
         };
 
         const result = await db.collection("fridges").updateOne(
-            { _id: new ObjectId(fridgeId) },
+            { _id: new ObjectId(FridgeID) },
             { $push: { items: newItem } }
         );
 
@@ -354,9 +358,9 @@ app.post('/admin/addItem', async (req, res) => {
 });
 
 // Delete Fridge Item
-app.delete('/admin/deleteItem/:fridgeId/:itemId', async (req, res) => {
+app.delete('/admin/deleteItem/:FridgeID/:ItemID', async (req, res) => {
     try {
-        const { fridgeId, itemId } = req.params;
+        const { FridgeID, ItemID } = req.params;
 
         if (!db) {
             console.error('Database connection not established');
@@ -364,8 +368,8 @@ app.delete('/admin/deleteItem/:fridgeId/:itemId', async (req, res) => {
         }
 
         const result = await db.collection("fridges").updateOne(
-            { _id: new ObjectId(fridgeId) },
-            { $pull: { items: { _id: new ObjectId(itemId) } } }
+            { _id: new ObjectId(FridgeID) },
+            { $pull: { items: { _id: new ObjectId(ItemID) } } }
         );
 
         res.status(200).send(result);
@@ -375,10 +379,10 @@ app.delete('/admin/deleteItem/:fridgeId/:itemId', async (req, res) => {
 });
 
 // Edit Fridge Item
-app.put('/admin/editItem/:fridgeId/:itemId', async (req, res) => {
+app.put('/admin/editItem/:FridgeID/:ItemID', async (req, res) => {
     try {
-        const { fridgeId, itemId } = req.params;
-        const { itemName, quantity, expiryDate } = req.body;
+        const { FridgeID, ItemID } = req.params;
+        const { Itemname, Quantity, expiryDate } = req.body;
 
         if (!db) {
             console.error('Database connection not established');
@@ -386,8 +390,8 @@ app.put('/admin/editItem/:fridgeId/:itemId', async (req, res) => {
         }
 
         const result = await db.collection("fridges").updateOne(
-            { _id: new ObjectId(fridgeId), "items._id": new ObjectId(itemId) },
-            { $set: { "items.$.itemName": itemName, "items.$.quantity": quantity, "items.$.expiryDate": expiryDate } }
+            { _id: new ObjectId(FridgeID), "items._id": new ObjectId(ItemID) },
+            { $set: { "items.$.Itemname": Itemname, "items.$.quantity": Quantity, "items.$.expiryDate": expiryDate } }
         );
 
         res.status(200).send(result);
