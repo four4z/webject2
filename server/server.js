@@ -9,6 +9,7 @@ const { MongoClient, ObjectId } = require('mongodb');
 const app = express();
 const port = 3000;
 const upload = multer();
+const secret = "GN0000"
 
 let db;
 let client;
