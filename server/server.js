@@ -252,7 +252,7 @@ app.delete('/api/deleteuser/:id', async (req, res) => {
 });
 
 
-app.post('/admin/addFridge', async (req, res) => {
+app.post('/addFridge', async (req, res) => {
     try {
         const { name, owner } = req.body;
 
@@ -278,7 +278,7 @@ app.post('/admin/addFridge', async (req, res) => {
     }
 });
 
-app.put('/admin/editFridge/:id', async (req, res) => {
+app.put('/editFridge/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const { name } = req.body;
@@ -300,7 +300,7 @@ app.put('/admin/editFridge/:id', async (req, res) => {
 });
 
 
-app.delete('/admin/deleteFridge/:id', async (req, res) => {
+app.delete('/deleteFridge/:id', async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -316,7 +316,7 @@ app.delete('/admin/deleteFridge/:id', async (req, res) => {
     }
 });
 
-app.post('/admin/addItem', async (req, res) => {
+app.post('/addItem', async (req, res) => {
     try {
         const { FridgeID, Itemname, Quantity, expiryDate } = req.body;
 
@@ -347,7 +347,7 @@ app.post('/admin/addItem', async (req, res) => {
     }
 });
 
-app.delete('/admin/deleteItem/:FridgeID/:ItemID', async (req, res) => {
+app.delete('/deleteItem/:FridgeID/:ItemID', async (req, res) => {
     try {
         const { FridgeID, ItemID } = req.params;
 
@@ -367,7 +367,7 @@ app.delete('/admin/deleteItem/:FridgeID/:ItemID', async (req, res) => {
     }
 });
 
-app.put('/admin/editItem/:FridgeID/:ItemID', async (req, res) => {
+app.put('/editItem/:FridgeID/:ItemID', async (req, res) => {
     try {
         const { FridgeID, ItemID } = req.params;
         const { Itemname, Quantity, expiryDate } = req.body;
