@@ -132,7 +132,7 @@ const FridgeScreen = () => {
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
-    navigate('/signin');
+    navigate('/');
   };
 
   const handleProfile = () => {
