@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './RegisterScreen.module.css'; // Import the CSS module file
+import styles from './RegisterScreen.module.css'; 
 
 const SignInScreen = () => {
   const navigate = useNavigate();
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
-    // Add your login logic here
-    // After successful login, navigate to the fridge page
+
     navigate('/fridge');
   };
 

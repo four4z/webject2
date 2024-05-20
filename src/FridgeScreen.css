@@ -40,11 +40,11 @@
 
 .navbar-buttons {
   display: flex;
-  gap: 10px; /* Adjust the gap as needed */
+  gap: 10px; 
 }
 
 .logout-button, .profile-button {
-  background-color: red; /* Default color for both buttons */
+  background-color: red; 
   border: none;
   color: white;
   padding: 7px 20px;
@@ -61,7 +61,7 @@
 }
 
 .profile-button {
-  background-color: blue; /* Specific color for the profile button */
+  background-color: blue; 
 }
 
 .logout-button:hover, .profile-button:hover {
@@ -91,7 +91,7 @@
   width: 40%;
   background-color: #ffb6c1;
   border: 2px solid #000;
-  margin-top: 100px; /* Adjusted margin to account for navbar */
+  margin-top: 100px; 
   border-radius: 10px;
   padding: 10px;
   box-sizing: border-box;

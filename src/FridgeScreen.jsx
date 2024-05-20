@@ -103,7 +103,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './FridgeScreen.css'; // Make sure to import the CSS file
+import './FridgeScreen.css'; 
 
 const FridgeScreen = () => {
   const [items, setItems] = useState([

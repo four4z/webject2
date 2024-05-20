@@ -7,7 +7,7 @@
     background-image: url('https://media.istockphoto.com/id/1466020226/photo/an-original-background-image-for-design-or-product-presentation-in-light-beige-tones.jpg?s=612x612&w=0&k=20&c=3kT9OYwdL7I7JHwIFVX_xW5joOUbcF7nO9C5960cnd8=');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Ensure background remains fixed while scrolling */
+    background-attachment: fixed; 
     color: white;
   }
   

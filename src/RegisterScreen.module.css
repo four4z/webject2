@@ -1,4 +1,4 @@
-/* RegisterScreen.module.css */
+
 
 .register-screen-container {
   --ruler: 16px;
@@ -15,7 +15,7 @@
   min-height: 100vh;
 }
 
-/* Add more styles as needed */
+
 
 .register-screen-container,
 p,

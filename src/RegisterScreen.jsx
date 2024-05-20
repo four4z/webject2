@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './RegisterScreen.module.css'; // Import the CSS module file
+import styles from './RegisterScreen.module.css'; 
 import axios from 'axios';
 
 const RegisterScreen = () => {
@@ -18,29 +18,37 @@ const RegisterScreen = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleRegisterSubmit = async (event) => {
+  //ชั่วคราว
+  const handleRegisterSubmit = (event) => {
     event.preventDefault();
 
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-
-    try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
-        name,
-        email,
-        password,
-      });
-
-      if (response.status === 201) {
-        navigate('/signin');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Error registering user');
-    }
+    navigate('/signin');
   };
+
+
+  // const handleRegisterSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   if (password !== confirmPassword) {
+  //     alert('Passwords do not match');
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await axios.post('http://localhost:5000/api/auth/register', {
+  //       name,
+  //       email,
+  //       password,
+  //     });
+
+  //     if (response.status === 201) {
+  //       navigate('/signin');
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert('Error registering user');
+  //   }
+  // };
 
   return (
     <div className={styles['register-screen-container']}> {/* Apply CSS module class */}
@@ -48,7 +56,7 @@ const RegisterScreen = () => {
       <form onSubmit={handleRegisterSubmit}>
         <input
           type="text"
-          placeholder="Full Name"
+          placeholder="User Name"
           name="name"
           value={name}
           onChange={handleChange}
@@ -80,7 +88,7 @@ const RegisterScreen = () => {
         />
         <button type="submit">Register</button>
       </form>
-      <div className={styles['signin-link']}> {/* Apply CSS module class */}
+      <div className={styles['signin-link']}> 
         <p>Already have an account?</p>
         <Link to="/signin">Sign In</Link>
       </div>
