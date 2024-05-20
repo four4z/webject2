@@ -9,12 +9,10 @@ const { MongoClient, ObjectId } = require('mongodb');
 const app = express();
 const port = 3000;
 const upload = multer();
-const secret = 'test'; // For production, use a secure environment variable
 
 let db;
 let client;
 
-// Middleware to parse JSON and URL-encoded data and handle cookies
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -33,8 +31,6 @@ async function connectDB() {
 
 // Connect to the database
 connectDB();
-
-// Middleware to ensure MongoDB connection is established
 app.use(async (req, res, next) => {
     if (!client || !client.topology || !client.topology.isConnected()) {
         console.log("Reconnecting to MongoDB...");
@@ -43,7 +39,7 @@ app.use(async (req, res, next) => {
     next();
 });
 
-// Hash password function
+
 const hashPassword = async (password) => {
     try {
         const salt = await bcrypt.genSalt(10);
@@ -54,7 +50,7 @@ const hashPassword = async (password) => {
     }
 };
 
-// Match password function
+
 const matchPassword = async (password, hash) => {
     try {
         return await bcrypt.compare(password, hash);
@@ -63,7 +59,7 @@ const matchPassword = async (password, hash) => {
     }
 };
 
-// Sign Up
+
 app.post('/api/signup', upload.none(), async (req, res) => {
     try {
         const { email, username, password } = req.body;
@@ -95,7 +91,7 @@ app.post('/api/signup', upload.none(), async (req, res) => {
     }
 });
 
-// Login
+
 app.post('/api/login', upload.none(), async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -126,7 +122,7 @@ app.post('/api/login', upload.none(), async (req, res) => {
     }
 });
 
-// Change Password
+
 app.put('/api/changepassword', async (req, res) => {
     try {
         const { id, password, newpassword } = req.body;
@@ -154,7 +150,7 @@ app.put('/api/changepassword', async (req, res) => {
     }
 });
 
-// Middleware to check if user is logged in
+// check log in status
 app.get('/api/checkToken', (req, res) => {
     try {
         const token = req.cookies.token;
@@ -170,8 +166,7 @@ app.get('/api/checkToken', (req, res) => {
     }
 });
 
-// Edit Account
-app.post('/api/edit', async (req, res) => {
+app.post('/api/editaccount', async (req, res) => {
     try {
         const { username } = req.body;
         const token = req.cookies.token;
@@ -195,7 +190,6 @@ app.post('/api/edit', async (req, res) => {
     }
 });
 
-// Logout
 app.get('/api/logout', (req, res) => {
     try {
         res.clearCookie('token');
@@ -205,7 +199,6 @@ app.get('/api/logout', (req, res) => {
     }
 });
 
-// Get all users
 app.get('/admin/getallusers', async (req, res) => {
     try {
         if (!db) {
@@ -242,7 +235,6 @@ app.get('/api/getAccount/:id', async (req, res) => {
     }
 });
 
-// Delete Account
 app.delete('/api/deleteuser/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -259,7 +251,7 @@ app.delete('/api/deleteuser/:id', async (req, res) => {
     }
 });
 
-// Add Fridge
+
 app.post('/admin/addFridge', async (req, res) => {
     try {
         const { name, owner } = req.body;
@@ -286,7 +278,6 @@ app.post('/admin/addFridge', async (req, res) => {
     }
 });
 
-// Edit Fridge
 app.put('/admin/editFridge/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -308,7 +299,7 @@ app.put('/admin/editFridge/:id', async (req, res) => {
     }
 });
 
-// Delete Fridge
+
 app.delete('/admin/deleteFridge/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -325,7 +316,6 @@ app.delete('/admin/deleteFridge/:id', async (req, res) => {
     }
 });
 
-// Add Fridge Item
 app.post('/admin/addItem', async (req, res) => {
     try {
         const { FridgeID, Itemname, Quantity, expiryDate } = req.body;
@@ -357,7 +347,6 @@ app.post('/admin/addItem', async (req, res) => {
     }
 });
 
-// Delete Fridge Item
 app.delete('/admin/deleteItem/:FridgeID/:ItemID', async (req, res) => {
     try {
         const { FridgeID, ItemID } = req.params;
@@ -378,7 +367,6 @@ app.delete('/admin/deleteItem/:FridgeID/:ItemID', async (req, res) => {
     }
 });
 
-// Edit Fridge Item
 app.put('/admin/editItem/:FridgeID/:ItemID', async (req, res) => {
     try {
         const { FridgeID, ItemID } = req.params;
@@ -400,7 +388,6 @@ app.put('/admin/editItem/:FridgeID/:ItemID', async (req, res) => {
     }
 });
 
-// Start server
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
