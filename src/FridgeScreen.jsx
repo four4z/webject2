@@ -135,11 +135,20 @@ const FridgeScreen = () => {
     navigate('/signin');
   };
 
+  const handleProfile = () => {
+
+    navigate('/profile');
+  };
+
   return (
     <div className="fridge-screen">
       <div className="navbar">
         <h1>Fridge App</h1>
-        <button className="button-33 logout-button" onClick={handleLogout}>Logout</button>
+
+        <div class="navbar-buttons">
+          <button className="button-33 profile-button" onClick={handleProfile}>profile</button>
+          <button className="button-33 logout-button" onClick={handleLogout}>Logout</button>
+        </div>
       </div>
       <div className="noti">เดี๋ยวเอารูปจริงมาใส่แทนกรอบแดง เขียวแจ้งเตือน ฟ้า add item</div>
       <div className="fridge">
