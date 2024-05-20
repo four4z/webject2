@@ -22,7 +22,7 @@ app.use(cors({ credentials: true, origin: ['http://localhost:5500'] }));
 
 async function connectDB() {
     try {
-        client = new MongoClient('mongodb://127.0.0.1:27017', { useUnifiedTopology: true });
+        client = new MongoClient('mongodb+srv://webject2:SbtDTeIU9pIIs8b3@loginweb2.wtpq5wl.mongodb.net/', { useUnifiedTopology: true });
         await client.connect();
         db = client.db('webject');
         console.log('Connected to MongoDB');
