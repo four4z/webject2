@@ -38,8 +38,13 @@
   z-index: 1000;
 }
 
-.logout-button {
-  background-color: red;
+.navbar-buttons {
+  display: flex;
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+.logout-button, .profile-button {
+  background-color: red; /* Default color for both buttons */
   border: none;
   color: white;
   padding: 7px 20px;
@@ -55,10 +60,18 @@
   touch-action: manipulation;
 }
 
-.logout-button:hover {
+.profile-button {
+  background-color: blue; /* Specific color for the profile button */
+}
+
+.logout-button:hover, .profile-button:hover {
   box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset, rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px, rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px, rgba(44, 187, 99, 0.25) 0 16px 32px;
   transform: scale(1.05) rotate(-1deg);
 }
+
+
+
+
 
 .noti {
   position: absolute; 
