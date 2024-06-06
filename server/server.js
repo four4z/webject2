@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -17,7 +21,11 @@ let client;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+<<<<<<< Updated upstream
 app.use(cors({ credentials: true, origin: ['http://localhost:5500'] }));
+=======
+
+>>>>>>> Stashed changes
 
 async function connectDB() {
     try {
