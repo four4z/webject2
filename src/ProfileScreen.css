@@ -1,17 +1,19 @@
-.profile-container {
+/* New CSS to apply background color to the entire page */
+body {
     background: rgb(99, 39, 120);
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-.container {
+.profile-container {
     background: #fff;
     border-radius: 10px;
-    max-width: 100%;
+    max-width: 25%;
     padding: 30px;
     display: flex;
     flex-direction: row;
+    margin: 20px auto;
 }
 
 .profile-picture-section {
@@ -101,9 +103,8 @@
     color: #fff;
 }
 
-
 @media screen and (max-width: 768px) {
-    .container {
+    .profile-container {
         flex-direction: column;
     }
 

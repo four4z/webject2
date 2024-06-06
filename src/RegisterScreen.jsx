@@ -18,79 +18,59 @@ const RegisterScreen = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  //ชั่วคราว
   const handleRegisterSubmit = (event) => {
     event.preventDefault();
-
     navigate('/signin');
   };
 
-
-  // const handleRegisterSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   if (password !== confirmPassword) {
-  //     alert('Passwords do not match');
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await axios.post('http://localhost:5000/api/auth/register', {
-  //       name,
-  //       email,
-  //       password,
-  //     });
-
-  //     if (response.status === 201) {
-  //       navigate('/signin');
-  //     }
-  //   } catch (err) {
-  //     console.error(err);
-  //     alert('Error registering user');
-  //   }
-  // };
-
   return (
-    <div className={styles['register-screen-container']}> {/* Apply CSS module class */}
-      <h2>Register</h2>
-      <form onSubmit={handleRegisterSubmit}>
-        <input
-          type="text"
-          placeholder="User Name"
-          name="name"
-          value={name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email Address"
-          name="email"
-          value={email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          name="confirmPassword"
-          value={confirmPassword}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Register</button>
-      </form>
-      <div className={styles['signin-link']}> 
-        <p>Already have an account?</p>
-        <Link to="/signin">Sign In</Link>
+    <div className={styles['register-screen-container']}>
+      <div className={styles['screen-1']}>
+        <img className={styles.logo} src="https://i.pinimg.com/originals/7b/2a/86/7b2a86993b5bb7eafa019815af8a2d0c.png" alt="Logo" />
+        <h2>Register</h2>
+        <form onSubmit={handleRegisterSubmit}>
+          <input
+            className={styles["input-regis"]}
+            type="text"
+            placeholder="User Name"
+            name="name"
+            value={name}
+            onChange={handleChange}
+            required
+          />
+          <input
+            className={styles["input-regis"]}
+            type="email"
+            placeholder="Email Address"
+            name="email"
+            value={email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            className={styles["input-regis"]}
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+            required
+          />
+          <input 
+            className={styles["input-regis"]}
+            type="password"
+            placeholder="Confirm Password"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={handleChange}
+            required
+          />
+          <button className={styles["button-submit"]} type="submit">Register</button>
+        </form>
+        <div className={styles['signin-link']}>
+          <p>Already have an account?</p>
+          <Link to="/signin">Sign In</Link>
+        </div>
       </div>
     </div>
   );
