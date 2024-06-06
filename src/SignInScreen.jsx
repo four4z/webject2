@@ -7,7 +7,12 @@ const SignInScreen = () => {
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
-    navigate('/fridge');
+    const userData = {
+      username: 'Edogaru',
+      email: 'edogaru@mail.com.my',
+      password: 'password123',
+    };
+    navigate('/fridge', { state: userData });
   };
 
   return (
