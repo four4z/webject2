@@ -1,8 +1,8 @@
 :root {
-  --p: hsl(213deg 85% 97%);
+  --p: #f78800;
   --s: hsl(233deg 36% 38%);
   --color-bg: #EBECF0;
-  --color-shadow: #BABECC;
+  --color-shadow: #babeccd5;
   --color-white: #FFF;
 }
 
@@ -13,7 +13,8 @@ body {
 
 .register-screen-container {
   --ruler: 16px;
-  background: var(--p);
+  /* background: var(--p); */
+  background: #f4e2cc;
   font-family: 'Poppins', sans-serif;
   letter-spacing: -0.2px;
   font-size: var(--ruler);
@@ -22,6 +23,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: -8px;
 }
 
 .screen-1,
@@ -34,12 +36,20 @@ body {
   border-radius: 30px;
   box-shadow: 0 0 2em hsl(231deg 62% 94%);
   gap: 2em;
+  height: 90vh;
 }
 
 .logo {
-  width: 150px;
-  height: 150px;
-  margin-top: -3em;
+  width: 300px;
+  height: 200px;
+  /* margin-top: -3em; */
+  margin-top: 10px;
+}
+
+.text {
+  color: white;
+  margin-top: -10px;
+  margin-bottom: -5px;
 }
 
 form {

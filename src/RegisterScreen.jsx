@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './RegisterScreen.module.css'; 
 import axios from 'axios';
+import logo from './image.jpeg';
 
 const RegisterScreen = () => {
   const navigate = useNavigate();
@@ -26,8 +27,8 @@ const RegisterScreen = () => {
   return (
     <div className={styles['register-screen-container']}>
       <div className={styles['screen-1']}>
-        <img className={styles.logo} src="https://i.pinimg.com/originals/7b/2a/86/7b2a86993b5bb7eafa019815af8a2d0c.png" alt="Logo" />
-        <h2>Register</h2>
+        <img className={styles.logo} src={logo} alt="Logo" />
+        <h2 className={styles['text']}>Register</h2>
         <form onSubmit={handleRegisterSubmit}>
           <input
             className={styles["input-regis"]}

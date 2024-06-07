@@ -69,10 +69,6 @@
   transform: scale(1.05) rotate(-1deg);
 }
 
-
-
-
-
 .noti {
   position: absolute; 
   top: 70px; 
@@ -89,7 +85,9 @@
   gap: 10px;
   height: 80%;
   width: 40%;
-  background-color: #ffb6c1;
+  background-image: url('https://cdn1.productnation.co/stg/sites/6/5ea15f5593162.jpeg');
+  background-size: cover;
+  background-position: center;
   border: 2px solid #000;
   margin-top: 100px; 
   border-radius: 10px;

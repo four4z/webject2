@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './RegisterScreen.module.css'; 
+import logo from './image.jpeg'; // Import the image
 
 const SignInScreen = () => {
   const navigate = useNavigate();
@@ -18,8 +19,8 @@ const SignInScreen = () => {
   return (
     <div className={styles['register-screen-container']}>
       <div className={styles['screen-2']}>
-        <img className={styles.logo} src="https://i.pinimg.com/originals/7b/2a/86/7b2a86993b5bb7eafa019815af8a2d0c.png" alt="Logo" />
-        <h2>Sign In</h2>
+        <img className={styles.logo} src={logo} alt="Logo" /> {/* Use the imported image */}
+        <h2 className={styles['text']}>Sign In</h2>
         <form onSubmit={handleLoginSubmit}>
           <input className={styles["input-regis"]} type="email" placeholder="Email" required />
           <input className={styles["input-regis"]} type="password" placeholder="Password" required />
