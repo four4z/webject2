@@ -26,8 +26,9 @@ const SignInScreen = () => {
           <button className={styles["button-submit"]} type="submit">Login</button>
         </form>
         <div className={styles["signin-link"]}>
-          <p>Don't have an account?</p>
-          <Link to="/register">Register</Link>
+          <p>Don't have an account?
+          <Link to="/register">  Register</Link>
+          </p>
         </div>
       </div>
     </div>

@@ -68,8 +68,9 @@ const RegisterScreen = () => {
           <button className={styles["button-submit"]} type="submit">Register</button>
         </form>
         <div className={styles['signin-link']}>
-          <p>Already have an account?</p>
-          <Link to="/signin">Sign In</Link>
+          <p>Already have an account?
+          <Link to="/signin">  Sign In</Link>
+          </p>
         </div>
       </div>
     </div>
