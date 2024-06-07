@@ -1,4 +1,4 @@
-body {
+/* body {
     background: rgb(99, 39, 120);
     margin: 0;
     padding: 0;
@@ -7,14 +7,24 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
+} */
 
 .profile-screen {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 105%;
     height: 100%;
+
+    background: rgb(99, 39, 120);
+    margin-left: -10px;
+    margin-top: -10px;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .profile-container {
