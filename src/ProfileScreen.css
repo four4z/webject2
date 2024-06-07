@@ -3,12 +3,13 @@
     justify-content: center;
     align-items: center;
     width: 102%;
-    height: 102vh;
+    height: 105vh;
     padding: 0;
     position: relative;
     background: #f78800;
     font-family: Arial, sans-serif;
     margin-left: -10px;
+    margin-top: -10px;
 }
 
 .profile-container {
