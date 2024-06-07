@@ -75,16 +75,11 @@ const ProfileScreen = () => {
                 src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
                 alt="profile"
               />
-              {/* <span className="font-weight-bold">{profile.firstName}</span>
-              <span className="text-black-50">{profile.email}</span> */}
               <span> </span>
             </div>
           </div>
           <div className="col-md-9 profile-settings-section">
             <div className="p-3 py-5">
-              {/* <div className="d-flex justify-content-between align-items-center mb-3">
-                <h4 className="text-right">Profile Settings</h4>
-              </div> */}
               <div className="row mt-2">
                 <div className="col-md-6">
                   <label className="labels">Username</label>
@@ -166,13 +161,13 @@ const ProfileScreen = () => {
           <h4>Fridge</h4>
           <div className="btn-group">
             <button
-              className={`btn ${isCreateFridge ? 'btn-primary' : 'btn-secondary'}`}
+              className={`btn ${isCreateFridge ? 'btn-primary selected' : 'btn-secondary'}`}
               onClick={() => setIsCreateFridge(true)}
             >
               Create Fridge
             </button>
             <button
-              className={`btn ${!isCreateFridge ? 'btn-primary' : 'btn-secondary'}`}
+              className={`btn ${!isCreateFridge ? 'btn-primary selected' : 'btn-secondary'}`}
               onClick={() => setIsCreateFridge(false)}
             >
               Join Fridge
