@@ -16,6 +16,11 @@ const ProfileScreen = () => {
   const [profile, setProfile] = useState(initialProfileState);
   const [isEditing, setIsEditing] = useState(false);
   const [tempProfile, setTempProfile] = useState(initialProfileState);
+  const [showFridge, setShowFridge] = useState(false);
+  const [fridgeName, setFridgeName] = useState('');
+  const [generatedCode, setGeneratedCode] = useState('');
+  const [isCreateFridge, setIsCreateFridge] = useState(true);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,9 +44,28 @@ const ProfileScreen = () => {
     setIsEditing(false);
   };
 
+  const handleGenerateCode = () => {
+    if (!fridgeName) {
+      alert('Please enter a fridge name');
+      return;
+    }
+    const code = Math.floor(10000 + Math.random() * 90000).toString();
+    setGeneratedCode(code);
+  };
+
+  const handleJoinFridge = (e) => {
+    e.preventDefault();
+    setShowSuccessPopup(true);
+  };
+
+  const handleSuccessPopupClose = () => {
+    setShowSuccessPopup(false);
+    setShowFridge(false);
+  };
+
   return (
     <div className="profile-screen">
-      <div className={`profile-container container rounded bg-white ${isEditing ? 'editing' : ''}`}>
+      <div className={`profile-container container rounded bg-white ${isEditing ? 'editing' : ''} ${showFridge ? 'slide-out' : ''}`}>
         <div className="row">
           <div className="col-md-3 border-right profile-picture-section">
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -131,8 +155,71 @@ const ProfileScreen = () => {
               Save Profile
             </button>
           )}
+          <button className="btn btn-primary fridge-button" type="button" onClick={() => setShowFridge(true)}>
+            Fridge
+          </button>
         </div>
       </div>
+
+      <div className={`fridge-container container rounded bg-white ${showFridge ? 'slide-in' : ''}`}>
+        <div className="p-3 py-5">
+          <h4>Fridge</h4>
+          <div className="btn-group">
+            <button
+              className={`btn ${isCreateFridge ? 'btn-primary' : 'btn-secondary'}`}
+              onClick={() => setIsCreateFridge(true)}
+            >
+              Create Fridge
+            </button>
+            <button
+              className={`btn ${!isCreateFridge ? 'btn-primary' : 'btn-secondary'}`}
+              onClick={() => setIsCreateFridge(false)}
+            >
+              Join Fridge
+            </button>
+          </div>
+          {isCreateFridge ? (
+            <div className="mt-3">
+              <label className="labels">Fridge Name</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter fridge name"
+                value={fridgeName}
+                onChange={(e) => setFridgeName(e.target.value)}
+              />
+              <button className="btn btn-primary mt-2" type="button" onClick={handleGenerateCode}>
+                Confirm
+              </button>
+              {generatedCode && (
+                <div className="mt-2">
+                  <p>Generated Code: {generatedCode}</p>
+                  <button className="btn btn-secondary" onClick={() => navigator.clipboard.writeText(generatedCode)}>
+                    Copy Code
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <form onSubmit={handleJoinFridge} className="mt-3">
+              <label className="labels">Enter Code</label>
+              <input type="text" className="form-control" placeholder="Enter code" required />
+              <button className="btn btn-primary mt-2" type="submit">
+                Confirm
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+
+      {showSuccessPopup && (
+        <div className="success-popup">
+          <div className="popup-content">
+            <p>Success!</p>
+            <button className="btn btn-primary" onClick={handleSuccessPopupClose}>OK</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
