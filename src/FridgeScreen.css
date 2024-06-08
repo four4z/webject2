@@ -1,92 +1,167 @@
-/* body {
-    margin: 0;
+  /* body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+  */
+
+  .fridge-screen {
+    position: relative;
+    width: 101.2%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #f0f0f0;
     padding: 0;
+    box-sizing: border-box;
+    margin-left: -10px;
+    margin-top: -10px;
+  }
+
+  .navbar {
+    width: 100%;
+    height: 60px;
+    background-color: #f78800; /* Updated background color */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    /* Add a white vertical line */
+    position: relative;
+  }
+
+  .navbar::after {
+    content: '';
+    position: absolute;
+    height: 80%;
+    width: 2px;
+    background-color: white;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 7.9%;
+  }
+
+  .logout-button, .profile-button2 {
+    background-color: transparent; /* Change background color to transparent */
+    border: none;
+    color: white;
+    padding: 7px 20px;
+    /* border-radius: 100px; */
+    cursor: pointer;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    /* margin-right: 20px; */
+    margin-left: 22px;
+    height: 7vh;
+  }
+
+  /* Add more specificity to the profile button */
+  .navbar-buttons .profile-button2 {
+    background-color: transparent;
+  }
+
+  .profile-button2:hover{
+    transform: scale(1.05) rotate(2deg);
+  }
+
+  .logout-button:hover {
+    transform: scale(1.05) rotate(-4deg);
+  }
+
+
+  .fridge {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    height: 80%;
+    width: 40%;
+    border: 2px solid #000;
+    margin-top: 100px; 
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-left: -800px;
+  }
+
+  .red-box {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+    font-size: 12px;
+    background-color: rgba(255, 0, 0, 0.2);
+    border: 2px solid red;
   }
-*/
 
-.fridge-screen {
-  position: relative;
-  width: 101.2%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: #f0f0f0;
-  padding: 0;
-  box-sizing: border-box;
-  margin-left: -10px;
-  margin-top: -10px;
-}
+  .big-blue-box {
+    position: absolute;
+    width: 45%;
+    height: 35%;
+    background-color: rgba(0, 0, 255, 0.2);
+    border: 2px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 420px;
+    margin-left: 700px;
+  }
 
-.navbar {
-  width: 100%;
-  height: 60px;
-  background-color: #f78800; /* Updated background color */
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  /* Add a white vertical line */
-  position: relative;
-}
+  .green-box {
+    position: absolute;
+    width: 45%;
+    height: 40%;
+    background-color: rgb(9, 255, 0);
+    border: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 110px;
+    margin-left: 700px;
+  }
 
-.navbar::after {
-  content: '';
-  position: absolute;
-  height: 80%;
-  width: 2px;
-  background-color: white;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 7.9%;
-}
+  .add-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.logout-button, .profile-button2 {
-  background-color: transparent; /* Change background color to transparent */
-  border: none;
-  color: white;
-  padding: 7px 20px;
-  /* border-radius: 100px; */
-  cursor: pointer;
-  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  /* margin-right: 20px; */
-  margin-left: 22px;
-  height: 7vh;
-}
+  .add-item input {
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 14px;
+  }
 
-/* Add more specificity to the profile button */
-.navbar-buttons .profile-button2 {
-  background-color: transparent;
-}
-
-.profile-button2:hover{
-  transform: scale(1.05) rotate(2deg);
-}
-
-.logout-button:hover {
-  transform: scale(1.05) rotate(-4deg);
-}
+  .add-item button {
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+  }
 
 
+<<<<<<< Updated upstream
 .fridge {
   position: relative;
   display: grid;
@@ -274,3 +349,17 @@
   background-color: #f78800;
   border: none;
 }
+=======
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+>>>>>>> Stashed changes
