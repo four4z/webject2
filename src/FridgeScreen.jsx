@@ -225,13 +225,14 @@ const ProfileScreen = ({ togglePopup }) => {
 
 const FridgeScreen = () => {
   const [items, setItems] = useState([
-    { name: 'Milk', quantity: 2 },
-    { name: 'Eggs', quantity: 12 },
-    { name: 'Butter', quantity: 1 },
+    { name: 'Milk', quantity: 2, expiryDate: '2023-07-01' },
+    { name: 'Eggs', quantity: 12, expiryDate: '2023-07-10' },
+    { name: 'Butter', quantity: 1, expiryDate: '2023-07-15' },
   ]);
 
   const [newItem, setNewItem] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [expiryDate, setExpiryDate] = useState('');
   const [isPopupVisible, setPopupVisibility] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
@@ -239,10 +240,11 @@ const FridgeScreen = () => {
   const navigate = useNavigate();
 
   const addItem = () => {
-    if (newItem) {
-      setItems([...items, { name: newItem, quantity }]);
+    if (newItem && expiryDate) {
+      setItems([...items, { name: newItem, quantity, expiryDate }]);
       setNewItem('');
       setQuantity(1);
+      setExpiryDate('');
       // togglePopupVisibility();
     }
   };
@@ -292,6 +294,7 @@ const FridgeScreen = () => {
           <div className={`red-box red-box-${index + 1}`} key={index}>
             <h3>{item.name}</h3>
             <p>Quantity: {item.quantity}</p>
+            <p2>expiryDate: {item.expiryDate}</p2>
             <button onClick={() => removeItem(index)}>Remove</button>
           </div>
         ))}
@@ -313,6 +316,12 @@ const FridgeScreen = () => {
             placeholder="Quantity"
             value={quantity}
             onChange={(e) => setQuantity(Number(e.target.value))}
+          />
+          <input
+            type="date"
+            placeholder="Expiry Date"
+            value={expiryDate}
+            onChange={(e) => setExpiryDate(e.target.value)}
           />
           <button onClick={addItem}>Add Item</button>
         </div>
