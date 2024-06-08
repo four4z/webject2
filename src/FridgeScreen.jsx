@@ -146,8 +146,8 @@ const FridgeScreen = () => {
         <h1>Fridge App</h1>
 
         <div class="navbar-buttons">
-          <button className="button-33 profile-button" onClick={handleProfile}>profile</button>
-          <button className="button-33 logout-button" onClick={handleLogout}>Logout</button>
+          <button className=" profile-button2" onClick={handleProfile}>profile</button>
+          <button className=" logout-button" onClick={handleLogout}>Logout</button>
         </div>
       </div>
       <div className="noti">เดี๋ยวเอารูปจริงมาใส่แทนกรอบแดง เขียวแจ้งเตือน ฟ้า add item</div>

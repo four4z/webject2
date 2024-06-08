@@ -11,8 +11,8 @@
 
 .fridge-screen {
   position: relative;
-  width: 100%;
-  height: 97.8vh;
+  width: 101.2%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -20,12 +20,14 @@
   background-color: #f0f0f0;
   padding: 0;
   box-sizing: border-box;
+  margin-left: -10px;
+  margin-top: -10px;
 }
 
 .navbar {
   width: 100%;
   height: 60px;
-  background-color: #333;
+  background-color: #f78800; /* Updated background color */
   color: white;
   display: flex;
   justify-content: space-between;
@@ -36,19 +38,27 @@
   top: 0;
   left: 0;
   z-index: 1000;
+  /* Add a white vertical line */
+  position: relative;
 }
 
-.navbar-buttons {
-  display: flex;
-  gap: 10px; 
+.navbar::after {
+  content: '';
+  position: absolute;
+  height: 80%;
+  width: 2px;
+  background-color: white;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 7.9%;
 }
 
-.logout-button, .profile-button {
-  background-color: red; 
+.logout-button, .profile-button2 {
+  background-color: transparent; /* Change background color to transparent */
   border: none;
   color: white;
   padding: 7px 20px;
-  border-radius: 100px;
+  /* border-radius: 100px; */
   cursor: pointer;
   font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
   font-size: 16px;
@@ -58,13 +68,24 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  /* margin-right: 20px; */
+  margin-left: 22px;
+  height: 7vh;
 }
 
-.profile-button {
-  background-color: blue; 
+/* Add more specificity to the profile button */
+.navbar-buttons .profile-button2 {
+  background-color: transparent;
 }
 
-.logout-button:hover, .profile-button:hover {
+.profile-button2:hover{
+  background-color: rgba(234, 11, 11, 0.2); /* Change background color on hover */
+  box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset, rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px, rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px, rgba(44, 187, 99, 0.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+.logout-button:hover {
+  background-color: rgba(234, 11, 11, 0.2); /* Change background color on hover */
   box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset, rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px, rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px, rgba(44, 187, 99, 0.25) 0 16px 32px;
   transform: scale(1.05) rotate(-1deg);
 }
