@@ -1,188 +1,105 @@
-  /* body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f0f0f0;
-    }
-  */
+.fridge-screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
 
-  .fridge-screen {
-    position: relative;
-    width: 101.2%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #f0f0f0;
-    padding: 0;
-    box-sizing: border-box;
-    margin-left: -10px;
-    margin-top: -10px;
-  }
+.navbar {
+  width: 100%;
+  height: 60px;
+  background-color: #f78800; /* Updated background color */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  /* Add a white vertical line */
+  position: relative;
+}
 
-  .navbar {
-    width: 100%;
-    height: 60px;
-    background-color: #f78800; /* Updated background color */
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    /* Add a white vertical line */
-    position: relative;
-  }
+.navbar::after {
+  content: '';
+  position: absolute;
+  height: 80%;
+  width: 2px;
+  background-color: white;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 7.9%;
+}
 
-  .navbar::after {
-    content: '';
-    position: absolute;
-    height: 80%;
-    width: 2px;
-    background-color: white;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 7.9%;
-  }
+.logout-button, .profile-button2 {
+  background-color: transparent; /* Change background color to transparent */
+  border: none;
+  color: white;
+  padding: 7px 20px;
+  cursor: pointer;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-left: 22px;
+  height: 7vh;
+}
 
-  .logout-button, .profile-button2 {
-    background-color: transparent; /* Change background color to transparent */
-    border: none;
-    color: white;
-    padding: 7px 20px;
-    /* border-radius: 100px; */
-    cursor: pointer;
-    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    transition: all 250ms;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    /* margin-right: 20px; */
-    margin-left: 22px;
-    height: 7vh;
-  }
+/* Add more specificity to the profile button */
+.navbar-buttons .profile-button2 {
+  background-color: transparent;
+}
 
-  /* Add more specificity to the profile button */
-  .navbar-buttons .profile-button2 {
-    background-color: transparent;
-  }
+.profile-button2:hover {
+  transform: scale(1.05) rotate(2deg);
+}
 
-  .profile-button2:hover{
-    transform: scale(1.05) rotate(2deg);
-  }
-
-  .logout-button:hover {
-    transform: scale(1.05) rotate(-4deg);
-  }
-
-
-  .fridge {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    height: 80%;
-    width: 40%;
-    border: 2px solid #000;
-    margin-top: 100px; 
-    border-radius: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    margin-left: -800px;
-  }
-
-  .red-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    background-color: rgba(255, 0, 0, 0.2);
-    border: 2px solid red;
-  }
-
-  .big-blue-box {
-    position: absolute;
-    width: 45%;
-    height: 35%;
-    background-color: rgba(0, 0, 255, 0.2);
-    border: 2px solid blue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    box-sizing: border-box;
-    margin-top: 420px;
-    margin-left: 700px;
-  }
-
-  .green-box {
-    position: absolute;
-    width: 45%;
-    height: 40%;
-    background-color: rgb(9, 255, 0);
-    border: 2px solid green;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    box-sizing: border-box;
-    margin-top: 110px;
-    margin-left: 700px;
-  }
-
-  .add-item {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .add-item input {
-    margin-bottom: 10px;
-    padding: 5px;
-    font-size: 14px;
-  }
-
-  .add-item button {
-    padding: 5px 10px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-
+.logout-button:hover {
+  transform: scale(1.05) rotate(-4deg);
+}
 
 .fridge {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 40%;
+  max-height: 500px; /* Set a fixed height to allow scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Hide horizontal scrolling */
+  margin-top: 60px;
+  margin-left: -105vh;
   border: 2px solid #000;
-  margin-top: 100px; 
   border-radius: 10px;
   padding: 10px;
   box-sizing: border-box;
-  margin-left: -800px;
 }
 
 .red-box {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  width: 100%;
+  font-size: 14px;
   background-color: rgba(255, 0, 0, 0.2);
-  border: 2px solid red;
+  border: 1px solid red;
+  padding: 5px;
+  margin-bottom: 5px;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width */
 }
 
 .big-blue-box {
@@ -216,16 +133,19 @@
 }
 
 .add-item {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
 }
 
 .add-item input {
   margin-bottom: 10px;
   padding: 5px;
   font-size: 14px;
+  width: calc(100% - 12px); /* Ensure inputs don't overflow the container */
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width */
 }
 
 .add-item button {
@@ -233,7 +153,6 @@
   font-size: 14px;
   cursor: pointer;
 }
-
 
 .popup {
   position: fixed;
@@ -246,6 +165,7 @@
   justify-content: center;
   align-items: center;
   z-index: 10;
+  
 }
 
 .profile-screen {

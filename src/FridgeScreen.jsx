@@ -220,6 +220,9 @@ const ProfileScreen = ({ togglePopup }) => {
   );
 };
 
+
+
+
 const FridgeScreen = () => {
   const [items, setItems] = useState([
     { name: 'Milk', quantity: 2 },
@@ -230,6 +233,8 @@ const FridgeScreen = () => {
   const [newItem, setNewItem] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [isPopupVisible, setPopupVisibility] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 7;
 
   const navigate = useNavigate();
 
@@ -238,6 +243,7 @@ const FridgeScreen = () => {
       setItems([...items, { name: newItem, quantity }]);
       setNewItem('');
       setQuantity(1);
+      // togglePopupVisibility();
     }
   };
 
@@ -254,6 +260,15 @@ const FridgeScreen = () => {
   const togglePopup = () => {
     setPopupVisibility(!isPopupVisible);
   };
+
+  const handlePageChange = (direction) => {
+    if (direction === 'prev' && currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    } else if (direction === 'next' && currentPage < Math.ceil(items.length / itemsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
 
   return (
     <div className="fridge-screen">
@@ -281,6 +296,7 @@ const FridgeScreen = () => {
           </div>
         ))}
       </div>
+
       <div className="green-box">
         <h3>Green Box Content</h3>
       </div>
