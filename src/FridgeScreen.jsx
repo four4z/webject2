@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './FridgeScreen.css';
 
@@ -236,7 +236,7 @@ const FridgeScreen = () => {
   const [isPopupVisible, setPopupVisibility] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
-
+  const [nearExpiryItems, setNearExpiryItems] = useState([]);
   const navigate = useNavigate();
 
   const addItem = () => {
@@ -271,6 +271,16 @@ const FridgeScreen = () => {
     }
   };
 
+    useEffect(() => {
+    const today = new Date();
+    const nearExpiry = items.filter(item => {
+      const expiryDate = new Date(item.expiryDate);
+      const diffTime = Math.abs(expiryDate - today);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays <= 3;
+    });
+    setNearExpiryItems(nearExpiry);
+  }, [items]);
 
   return (
     <div className="fridge-screen">
@@ -301,7 +311,15 @@ const FridgeScreen = () => {
       </div>
 
       <div className="green-box">
-        <h3>Green Box Content</h3>
+        <h3 className='noti-expire'>Items Near Expiry</h3>
+        {nearExpiryItems.map((item, index) => (
+          <div className={`red-box red-box-${index + 1} near-expiry`} key={index}>
+            <h3>{item.name}</h3>
+            <p>Quantity: {item.quantity}</p>
+            <p>Expiry Date: {item.expiryDate}</p>
+            {/* <button onClick={() => removeItem(index)}>Remove</button> */}
+          </div>
+        ))}
       </div>
       <div className="big-blue-box">
         <div className="add-item">
