@@ -5,7 +5,8 @@ const multer = require('multer');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
-
+const { v4: uuidv4 } = require('uuid');
+const uuid = require('uuid');
 const app = express();
 const port = 3000;
 const upload = multer();
@@ -252,8 +253,39 @@ app.delete('/api/deleteuser/:id', async (req, res) => {
     }
 });
 
+app.post('/api/joinFridge', async (req, res) => {
+    try {
+        const { joinKey, user } = req.body;
 
-app.post('/addFridge', async (req, res) => {
+        if (!db) {
+            console.error('Database connection not established');
+            return res.status(500).json({ error: 'Database connection not established' });
+        }
+
+        if (!joinKey || !user) {
+            return res.status(400).send({ message: "Please provide join key and user" });
+        }
+
+        const fridge = await db.collection("fridges").findOne({ joinKey });
+        if (!fridge) {
+            return res.status(400).send({ message: "Invalid join key" });
+        }
+
+        // Add user to the fridge's members if not already a member
+        if (!fridge.members.includes(user)) {
+            await db.collection("fridges").updateOne(
+                { joinKey },
+                { $push: { members: user } }
+            );
+        }
+
+        res.status(200).send({ message: "Joined fridge successfully" });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
+app.post('/api/createFridge', async (req, res) => {
     try {
         const { name, owner } = req.body;
 
@@ -266,14 +298,18 @@ app.post('/addFridge', async (req, res) => {
             return res.status(400).send({ message: "Please enter fridge name and owner" });
         }
 
+        const joinKey = uuidv4(); // Generate a unique join key
+
         const fridgeData = {
             name,
             owner,
+            joinKey,
+            members: [owner], // Initialize with the owner as a member
             items: []
         };
 
         const result = await db.collection("fridges").insertOne(fridgeData);
-        res.status(200).send({ result });
+        res.status(200).send({ result, joinKey }); // Send the join key to the client
     } catch (error) {
         console.error('Error:', error);
     }
@@ -386,6 +422,23 @@ app.put('/editItem/:FridgeID/:ItemID', async (req, res) => {
         res.status(200).send(result);
     } catch (error) {
         console.error('Error:', error);
+    }
+});
+
+app.get('/api/getUserFridges/:user', async (req, res) => {
+    try {
+        const { user } = req.params;
+
+        if (!db) {
+            console.error('Database connection not established');
+            return res.status(500).json({ error: 'Database connection not established' });
+        }
+
+        const userFridges = await db.collection("fridges").find({ members: user }).toArray();
+        res.status(200).send(userFridges);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send({ message: "Internal server error" });
     }
 });
 
