@@ -1,3 +1,11 @@
+/* :root {
+  --p: #f8310e;
+  --s: hsl(233deg 36% 38%);
+  --color-bg: #959595;
+  --color-shadow: #babeccd5;
+  --color-white: #FFF;
+} */
+
 :root {
   --p: #f78800;
   --s: hsl(233deg 36% 38%);
