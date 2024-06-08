@@ -27,14 +27,11 @@
 .button-33 {
   background-color: #f78800;
   border-radius: 1px;
-  box-shadow: rgba(241, 199, 61, 0.2) 0 -25px 18px -14px inset;
-  color: #3E3E3E;
+  color: #000000;
   cursor: pointer;
-  display: inline-block;
   font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
   padding: 7px 20px;
   text-align: center;
-  text-decoration: none;
   transition: all 250ms;
   border: 0;
   font-size: 16px;
@@ -43,9 +40,9 @@
 }
 
 .button-33:hover {
-  box-shadow: rgb(255, 153, 0) 0 -25px 18px -14px inset;
-  transform: scale(1.05) rotate(-1deg);
+  transform: scale(1.05) rotate(1deg);
   font-weight: bold; 
+  border: 3px solid #f78800;
 }
 
 /* Responsive adjustments */
