@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './RegisterScreen.module.css'; 
-import axios from 'axios';
+import styles from './Register.module.css'; 
 import logo from './fridge-transparent.png';
 
 const RegisterScreen = () => {
