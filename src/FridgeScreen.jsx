@@ -265,7 +265,7 @@ const FridgeScreen = () => {
       </div>
       {isPopupVisible && (
         <div className="popup">
-          <div className="popup-content">
+          <div>
             <ProfileScreen togglePopup={togglePopup} />
           </div>
         </div>

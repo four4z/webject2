@@ -90,14 +90,14 @@
   transform: scale(1.05) rotate(-1deg);
 }
 
-.noti {
+/* .noti {
   position: absolute; 
   top: 70px; 
   left: 0; 
   width: 100%; 
   z-index: 999;
   text-align: center;
-}
+} */
 
 .fridge {
   position: relative;
@@ -189,13 +189,13 @@
   z-index: 10;
 }
 
-.popup-content {
-  background-color: white;
+/* .popup-content {
+  background-color: rgb(196, 20, 20);
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(244, 3, 3, 0.1);
   text-align: left;
-}
+} */
 
 .popup-content h2 {
   margin-top: 0;
