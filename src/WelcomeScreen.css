@@ -2,21 +2,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center ;
   height: 101vh;
   width: 102%;
   margin-top: -10px;
   margin-left: -10px;
-  background-size: cover; /* Ensures the background image covers the entire container */
-  background-position: center; /* Centers the background image */
-  background-repeat: no-repeat; /* Prevents the background image from repeating */
-  background-attachment: fixed; /* Keeps the background fixed during scroll */
-  color: white;
+  padding: 0px;
+  color: #F79810;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow effect */
 }
 
-h1 {
-  font-size: 36px;
+.welcome-container h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 5px 4px 4px rgb(0, 0, 0); /* Adds text shadow for better readability */
 }
+
 
 .button-33 {
   background-color: #f78800;
@@ -33,13 +39,13 @@ h1 {
   border: 0;
   font-size: 16px;
   user-select: none;
-  -webkit-user-select: none;
   touch-action: manipulation;
 }
 
 .button-33:hover {
   box-shadow: rgb(255, 153, 0) 0 -25px 18px -14px inset;
   transform: scale(1.05) rotate(-1deg);
+  font-weight: bold; 
 }
 
 /* Responsive adjustments */
