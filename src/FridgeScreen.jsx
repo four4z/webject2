@@ -225,27 +225,31 @@ const ProfileScreen = ({ togglePopup }) => {
 
 const FridgeScreen = () => {
   const [items, setItems] = useState([
-    { name: 'Milk', quantity: 2, expiryDate: '2023-07-01' },
-    { name: 'Eggs', quantity: 12, expiryDate: '2023-07-10' },
-    { name: 'Butter', quantity: 1, expiryDate: '2023-07-15' },
+    { name: 'Milk', quantity: 2, expiryDate: '2023-07-01', note: "" },
+    { name: 'Eggs', quantity: 12, expiryDate: '2023-07-10', note: "" },
+    { name: 'Butter', quantity: 1, expiryDate: '2023-07-15', note: "" },
   ]);
 
   const [newItem, setNewItem] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [expiryDate, setExpiryDate] = useState('');
+  const [note, setNote] = useState('');
   const [isPopupVisible, setPopupVisibility] = useState(false);
+  const [isNotePopupVisible, setNotePopupVisibility] = useState(false);
+  const [currentNote, setCurrentNote] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
   const [nearExpiryItems, setNearExpiryItems] = useState([]);
+
   const navigate = useNavigate();
 
   const addItem = () => {
     if (newItem && expiryDate) {
-      setItems([...items, { name: newItem, quantity, expiryDate }]);
+      setItems([...items, { name: newItem, quantity, expiryDate, note }]);
       setNewItem('');
       setQuantity(1);
       setExpiryDate('');
-      // togglePopupVisibility();
+      setNote('');
     }
   };
 
@@ -263,6 +267,11 @@ const FridgeScreen = () => {
     setPopupVisibility(!isPopupVisible);
   };
 
+  const toggleNotePopup = (noteContent) => {
+    setCurrentNote(noteContent);
+    setNotePopupVisibility(!isNotePopupVisible);
+  };
+
   const handlePageChange = (direction) => {
     if (direction === 'prev' && currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -271,7 +280,7 @@ const FridgeScreen = () => {
     }
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const today = new Date();
     const nearExpiry = items.filter(item => {
       const expiryDate = new Date(item.expiryDate);
@@ -298,13 +307,22 @@ const FridgeScreen = () => {
           </div>
         </div>
       )}
+      {isNotePopupVisible && (
+        <div className="note-popup">
+          <div className="popup-content">
+            <p>{currentNote}</p>
+            <button className="btn btn-primary" onClick={() => setNotePopupVisibility(false)}>Close</button>
+          </div>
+        </div>
+      )}
       <div className="noti">Placeholder text for notification or additional content.</div>
       <div className="fridge">
         {items.map((item, index) => (
           <div className={`red-box red-box-${index + 1}`} key={index}>
             <h3>{item.name}</h3>
             <p>Quantity: {item.quantity}</p>
-            <p2>expiryDate: {item.expiryDate}</p2>
+            <p>Expiry Date: {item.expiryDate}</p>
+            <button onClick={() => toggleNotePopup(item.note)}>Note</button>
             <button onClick={() => removeItem(index)}>Remove</button>
           </div>
         ))}
@@ -317,7 +335,7 @@ const FridgeScreen = () => {
             <h3>{item.name}</h3>
             <p>Quantity: {item.quantity}</p>
             <p>Expiry Date: {item.expiryDate}</p>
-            {/* <button onClick={() => removeItem(index)}>Remove</button> */}
+            <button onClick={() => toggleNotePopup(item.note)}>Note</button>
           </div>
         ))}
       </div>
@@ -340,6 +358,13 @@ const FridgeScreen = () => {
             placeholder="Expiry Date"
             value={expiryDate}
             onChange={(e) => setExpiryDate(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Note (max 100 characters)"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            maxLength={100}
           />
           <button onClick={addItem}>Add Item</button>
         </div>
