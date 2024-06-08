@@ -68,10 +68,11 @@
     justify-content: center;
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .btn-group .btn {
-    flex: 1;
+    width: 150px; /* Fixed width for both buttons */
     margin: 0 10px;
     transition: background 0.3s ease;
 }
@@ -79,7 +80,7 @@
 .labels {
     font-size: 14px;
     color: #6c757d;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     display: block;
 }
 
@@ -181,6 +182,7 @@
 .fridge-container .btn-primary,
 .fridge-container .btn-secondary {
     width: 100%;
+    width: 150px;
     margin-top: 10px;
     background: rgb(99, 39, 120);
 }
@@ -189,7 +191,6 @@
 .fridge-container .btn-secondary:hover {
     background: #682773;
 }
-
 
 .btn-group .btn {
     flex: 1;
@@ -211,4 +212,28 @@
 
 .btn-group .btn:hover {
     background: #682773;
+}
+/* Add this style for consistent width of input fields */
+.fridge-container .form-control {
+    width: calc(100% - 20px); /* Adjust based on container padding */
+}
+
+/* Adjusted styles for the Confirm button */
+.fridge-container .btn-confirm {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: calc(100% - 40px); /* Adjust based on container padding and margins */
+    transition: background 0.3s ease;
+}
+
+.fridge-container .btn-confirm:hover,
+.fridge-container .btn-confirm:focus,
+.fridge-container .btn-confirm:active {
+    background: #0056b3;
+    box-shadow: none;
 }
