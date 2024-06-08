@@ -157,55 +157,55 @@ const ProfileScreen = () => {
       </div>
 
       <div className={`fridge-container container rounded bg-white ${showFridge ? 'slide-in' : ''}`}>
-        <div className="p-3 py-5">
-          <h4>Fridge</h4>
-          <div className="btn-group">
+    <div className="p-3 py-5">
+        <h4>Fridge</h4>
+        <div className="btn-group">
             <button
-              className={`btn ${isCreateFridge ? 'btn-primary selected' : 'btn-secondary'}`}
-              onClick={() => setIsCreateFridge(true)}
+                className={`btn ${isCreateFridge ? 'btn-primary selected' : 'btn-secondary'}`}
+                onClick={() => setIsCreateFridge(true)}
             >
-              Create Fridge
+                Create Fridge
             </button>
             <button
-              className={`btn ${!isCreateFridge ? 'btn-primary selected' : 'btn-secondary'}`}
-              onClick={() => setIsCreateFridge(false)}
+                className={`btn ${!isCreateFridge ? 'btn-primary selected' : 'btn-secondary'}`}
+                onClick={() => setIsCreateFridge(false)}
             >
-              Join Fridge
+                Join Fridge
             </button>
-          </div>
-          {isCreateFridge ? (
-            <div className="mt-3">
-              <label className="labels">Fridge Name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter fridge name"
-                value={fridgeName}
-                onChange={(e) => setFridgeName(e.target.value)}
-              />
-              <button className="btn btn-primary mt-2" type="button" onClick={handleGenerateCode}>
-                Confirm
-              </button>
-              {generatedCode && (
-                <div className="mt-2">
-                  <p>Generated Code: {generatedCode}</p>
-                  <button className="btn btn-secondary" onClick={() => navigator.clipboard.writeText(generatedCode)}>
-                    Copy Code
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <form onSubmit={handleJoinFridge} className="mt-3">
-              <label className="labels">Enter Code</label>
-              <input type="text" className="form-control" placeholder="Enter code" required />
-              <button className="btn btn-primary mt-2" type="submit">
-                Confirm
-              </button>
-            </form>
-          )}
         </div>
-      </div>
+        {isCreateFridge ? (
+            <div className="mt-3">
+                <label className="labels">Fridge Name</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter fridge name"
+                    value={fridgeName}
+                    onChange={(e) => setFridgeName(e.target.value)}
+                />
+                <button className="btn btn-confirm mt-2" type="button" onClick={handleGenerateCode}>
+                    Confirm
+                </button>
+                {generatedCode && (
+                    <div className="mt-2">
+                        <p>Generated Code: {generatedCode}</p>
+                        <button className="btn btn-secondary" onClick={() => navigator.clipboard.writeText(generatedCode)}>
+                            Copy Code
+                        </button>
+                    </div>
+                )}
+            </div>
+        ) : (
+            <form onSubmit={handleJoinFridge} className="mt-3">
+                <label className="labels">Enter Code</label>
+                <input type="text" className="form-control" placeholder="Enter code" required />
+                <button className="btn btn-confirm mt-2" type="submit">
+                    Confirm
+                </button>
+            </form>
+        )}
+    </div>
+</div>
 
       {showSuccessPopup && (
         <div className="success-popup">
