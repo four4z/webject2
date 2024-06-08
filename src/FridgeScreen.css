@@ -173,3 +173,104 @@
   align-items: center;
   z-index: 10;
 }
+
+.profile-screen {
+  position: relative;
+}
+
+.profile-container {
+  transition: transform 0.3s ease-in-out;
+}
+
+.profile-container.editing {
+  border: 2px solid #f78800;
+}
+
+.profile-container.slide-out {
+  transform: translateX(-100%);
+}
+
+.profile-picture-section {
+  background-color: #f8f8f8;
+}
+
+.profile-settings-section {
+  padding: 20px;
+}
+
+.labels {
+  font-weight: bold;
+}
+
+.display-field {
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.edit-buttons .btn {
+  margin-left: 10px;
+}
+
+.edit-buttons .btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.edit-buttons .btn-primary {
+  background-color: #f78800;
+  border: none;
+}
+
+.fridge-container {
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+}
+
+.fridge-container.slide-in {
+  transform: translateX(0);
+}
+
+.btn-group .btn {
+  margin-right: 10px;
+}
+
+.btn-primary.selected {
+  background-color: #f78800;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.btn-confirm {
+  background-color: #f78800;
+  border: none;
+}
+
+.success-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 2px solid #f78800;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup-content {
+  text-align: center;
+}
+
+.popup-content p {
+  margin-bottom: 20px;
+}
+
+.popup-content .btn {
+  background-color: #f78800;
+  border: none;
+}
