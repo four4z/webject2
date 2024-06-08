@@ -250,10 +250,23 @@
 
 .profile-screen {
   position: relative;
+  padding: 20px;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .profile-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
   transition: transform 0.3s ease-in-out;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .profile-container.editing {
@@ -266,6 +279,7 @@
 
 .profile-picture-section {
   background-color: #f8f8f8;
+  padding: 20px;
 }
 
 .profile-settings-section {
@@ -277,9 +291,13 @@
 }
 
 .display-field {
-  padding: 10px;
+  padding: 8px;
   background-color: #f0f0f0;
   border-radius: 5px;
+}
+
+.edit-buttons {
+  margin-top: 5px;
 }
 
 .edit-buttons .btn {
@@ -297,8 +315,15 @@
 }
 
 .fridge-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto 0;
   transition: transform 0.3s ease-in-out;
   transform: translateX(100%);
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .fridge-container.slide-in {

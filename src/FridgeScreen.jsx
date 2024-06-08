@@ -65,7 +65,7 @@ const ProfileScreen = ({ togglePopup }) => {
 
   return (
 <div className="profile-screen">
-  <div className={`profile-container container rounded bg-white ${isEditing ? 'editing' : ''} ${showFridge ? 'slide-out' : ''}`}>
+  <div className={`profile-container ${isEditing ? 'editing' : ''} ${showFridge ? 'slide-out' : ''}`}>
     <div className="row">
       <div className="col-md-3 border-right profile-picture-section">
         <div className="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -156,7 +156,7 @@ const ProfileScreen = ({ togglePopup }) => {
     </div>
   </div>
 
-  <div className={`fridge-container container rounded bg-white ${showFridge ? 'slide-in' : ''}`}>
+  <div className={`fridge-container ${showFridge ? 'slide-in' : ''}`}>
     <div className="p-3 py-5">
       <h4>Fridge</h4>
       <div className="btn-group">
