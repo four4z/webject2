@@ -352,6 +352,14 @@ app.delete('/deleteFridge/:id', async (req, res) => {
 
 app.post('/addItem', async (req, res) => {
     try {
+        const token = req.cookies.token; // Assuming the token is stored in cookies
+        if (!token) {
+            return res.status(401).send({ message: "Unauthorized" });
+        }
+
+        const decoded = jwt.verify(token, secret);
+        const userId = decoded.userId; // Assuming the token contains the userId
+
         const { FridgeID, Itemname, Quantity, expiryDate } = req.body;
 
         if (!db) {
@@ -367,7 +375,8 @@ app.post('/addItem', async (req, res) => {
             _id: new ObjectId(),
             Itemname,
             Quantity,
-            expiryDate
+            expiryDate,
+            addedBy: userId // Include the user ID of the person who added the item
         };
 
         const result = await db.collection("fridges").updateOne(
@@ -378,6 +387,7 @@ app.post('/addItem', async (req, res) => {
         res.status(200).send(result);
     } catch (error) {
         console.error('Error:', error);
+        res.status(500).send({ message: "Something went wrong" });
     }
 });
 

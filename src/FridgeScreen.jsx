@@ -158,38 +158,6 @@ const FridgeScreen = () => {
           </div>
         ))}
       </div>
-      {/* <div className="big-blue-box">
-        <div className='add-header'>add new item</div>
-        <div className="add-item">
-          <input
-            type="text"
-            placeholder="Item Name"
-            value={newItem}
-            onChange={(e) => setNewItem(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-          />
-          <input
-            type="date"
-            placeholder="Expiry Date"
-            value={expiryDate}
-            onChange={(e) => setExpiryDate(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Note (max 100 characters)"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-            maxLength={100}
-          />
-          <button onClick={addItem}>Add Item</button>
-        </div>
-      </div> */}
-
       <div className="big-blue-box">
         <div className="text">
           Add item
@@ -199,7 +167,6 @@ const FridgeScreen = () => {
             <div className="input-data">
               <input className='input2'
               type="text"
-              // placeholder="Item Name"
               value={newItem}
               onChange={(e) => setNewItem(e.target.value)}required
               />
@@ -249,22 +216,6 @@ const FridgeScreen = () => {
             < input type="button" value="Add Item" onClick={addItem} />
             </div>
           </div>
-
-          {/* <div className="form-row">
-            <div className="input-data textarea">
-              <textarea rows="8" cols="80" required></textarea>
-              <br />
-              <div className="underline"></div>
-              <label htmlFor="">Write your message</label>
-              <br />
-              <div className="form-row submit-btn">
-                <div className="input-data">
-                  <div className="inner"></div>
-                  <input type="submit" value="submit" />
-                </div>
-              </div>
-            </div>
-          </div> */}
         </form>
       </div> 
 
