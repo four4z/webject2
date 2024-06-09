@@ -277,12 +277,14 @@ const FridgeScreen = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('username');
-    navigate('/');
+  const handleLogout = async () => {
+    try {
+      await axios.get('http://localhost:3000/api/logout'); 
+      navigate('/'); 
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   };
-
   const togglePopup = () => {
     setPopupVisibility(!isPopupVisible);
   };
@@ -322,7 +324,9 @@ const FridgeScreen = () => {
         <img src={logo} alt="Fridge Logo" className='nav-logo'/>
         <div className="navbar-buttons">
           <button onClick={togglePopup} className="profile-button2">Profile</button>
-          <button className="logout-button" onClick={handleLogout}>Logout</button>
+          <button className="btn logout-button" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       </div>
       {isPopupVisible && (

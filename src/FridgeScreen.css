@@ -571,10 +571,6 @@ form .form-row .textarea{
   transform: scale(1);
 }
 
-.submit-btn {
-  /* Add any styles for the container if needed */
-}
-
 .submit-btn .input-data {
   overflow: hidden;
   height: 30px !important;

@@ -193,7 +193,6 @@ app.post('/api/editaccount', async (req, res) => {
 app.get('/api/logout', (req, res) => {
     try {
         res.clearCookie('token');
-        res.redirect('/');
     } catch (error) {
         console.error('Error:', error);
     }
