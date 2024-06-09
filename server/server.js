@@ -53,15 +53,16 @@ const hashPassword = async (password) => {
 };
 
 const authenticateToken = (req, res, next) => {
-    const token = req.header('Authorization')?.split(' ')[1];
+    const token = req.cookies.token;
     if (!token) return res.sendStatus(401);
 
-    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
+    jwt.verify(token, secret, (err, user) => {
         if (err) return res.sendStatus(403);
         req.user = user; // Add user data to request object
         next();
     });
 };
+
 
 const matchPassword = async (password, hash) => {
     try {
@@ -70,6 +71,34 @@ const matchPassword = async (password, hash) => {
         console.error('Error matching password', error);
     }
 };
+
+app.post('/api/verifyPassword', authenticateToken, async (req, res) => {
+    try {
+        const { password } = req.body;
+        const userId = req.user.id;
+
+        if (!db) {
+            console.error('Database connection not established');
+            return res.status(500).json({ error: 'Database connection not established' });
+        }
+
+        const user = await db.collection('users').findOne({ _id: new ObjectId(userId) });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const match = await bcrypt.compare(password, user.password);
+        if (match) {
+            return res.status(200).json({ match: true });
+        } else {
+            return res.status(400).json({ match: false });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 
 app.post('/api/signup', upload.none(), async (req, res) => {
@@ -176,34 +205,35 @@ app.get('/api/checkToken', (req, res) => {
     }
 });
 
+
+
+
 app.post('/api/editaccount', async (req, res) => {
     try {
-        const { username } = req.body;
-        const token = req.cookies.token;
-        const decode = jwt.verify(token, secret);
-        const id = decode.id;
+        const {firstName, email, password } = req.body;
 
-        const match = await bcrypt.compare(password, user.password);
-        if (!match) {
-          return res.status(400).json({ error: 'Password does not match' });
-        }
-        
-        if (!db) {
-            console.error('Database connection not established');
-            return res.status(500).json({ error: 'Database connection not established' });
+        if ( !firstName || !email || !password) {
+            return res.status(400).send({ error: 'Missing required fields' });
         }
 
-        const updateUser = db.collection("users");
-        await updateUser.updateOne(
-            { _id: new ObjectId(id) },
-            { $set: { username } }
-        );
-
-        res.redirect('/profile');
+        // Update user profile in the database
+        const result = await updateUserProfile( { firstName, email, password });
+        if (result) {
+            res.status(200).send({ message: 'Profile updated successfully' });
+        } else {
+            res.status(500).send({ error: 'Failed to update profile' });
+        }
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error updating profile:', error);
+        res.status(500).send({ error: 'Server error' });
     }
 });
+
+
+
+
+
+
 
 app.get('/api/logout', (req, res) => {
     try {
@@ -460,6 +490,31 @@ app.get('/api/getUserFridges/:user', async (req, res) => {
         res.status(500).send({ message: "Internal server error" });
     }
 });
+
+
+app.get('/api/getUser', authenticateToken, async (req, res) => {
+    try {
+        const userId = req.user.id; // Get the user ID from the authenticated token
+
+        if (!db) {
+            console.error('Database connection not established');
+            return res.status(500).json({ error: 'Database connection not established' });
+        }
+
+        const user = await db.collection('users').findOne({ _id: new ObjectId(userId) }, { projection: { username: 1, email: 1 } });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.status(200).json(user);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
