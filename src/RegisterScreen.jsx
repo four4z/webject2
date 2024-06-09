@@ -29,7 +29,7 @@ const RegisterScreen = () => {
         <img className={styles.logo} src={logo} alt="Logo" />
         <h2 className={styles['text']}>Register</h2>
         <form onSubmit={handleRegisterSubmit}>
-          <input
+          <input 
             className={styles["input-regis"]}
             type="text"
             placeholder="User Name"

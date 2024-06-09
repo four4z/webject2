@@ -339,7 +339,8 @@ const FridgeScreen = () => {
           </div>
         ))}
       </div>
-      <div className="big-blue-box">
+      {/* <div className="big-blue-box">
+        <div className='add-header'>add new item</div>
         <div className="add-item">
           <input
             type="text"
@@ -368,7 +369,89 @@ const FridgeScreen = () => {
           />
           <button onClick={addItem}>Add Item</button>
         </div>
-      </div>
+      </div> */}
+
+      <div className="big-blue-box">
+        <div className="text">
+          Add item
+        </div>
+        <form action="#">
+          <div className="form-row">
+            <div className="input-data">
+              <input className='input2'
+              type="text"
+              // placeholder="Item Name"
+              value={newItem}
+              onChange={(e) => setNewItem(e.target.value)}required
+              />
+              <div className="underline"></div>
+              <label htmlFor="">Item name</label>
+            </div>
+            <div className="input-data">
+              <input className='input2'
+              type="number"
+              placeholder="Quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}required
+              />
+              <div className="underline"></div>
+              <label htmlFor="">Quantity</label>
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="input-data">
+              <input className='input2'
+              type="date"
+              placeholder="Expiry Date"
+              value={expiryDate}
+              onChange={(e) => setExpiryDate(e.target.value)}required
+              />
+              <div className="underline"></div>
+              <label className='label-ex'htmlFor="">Expiry Date</label>
+            </div>
+
+          </div>
+          <div className="form-row">
+            <div className="input-data">
+              <input className='input2'
+              type="text"
+              placeholder="Note (max 100 characters)"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}required
+              maxLength={100}
+              />
+              <div className="underline"></div>
+              <label className='label-ex' htmlFor="">Note</label>
+            </div>
+          </div>
+          <div className="submit-btn">
+            <div className="input-data">
+              <div className="inner"></div>
+            < input type="button" value="Add Item" onClick={addItem} />
+            </div>
+          </div>
+
+          {/* <div className="form-row">
+            <div className="input-data textarea">
+              <textarea rows="8" cols="80" required></textarea>
+              <br />
+              <div className="underline"></div>
+              <label htmlFor="">Write your message</label>
+              <br />
+              <div className="form-row submit-btn">
+                <div className="input-data">
+                  <div className="inner"></div>
+                  <input type="submit" value="submit" />
+                </div>
+              </div>
+            </div>
+          </div> */}
+        </form>
+      </div> 
+
+
+
+
     </div>
   );
 };

@@ -63,8 +63,7 @@ form {
   gap: 1em;
 }
 
-.input-regis,
-input {
+.input-regis {
   outline: none;
   border: none;
   padding: 1em;
@@ -77,14 +76,12 @@ input {
   -webkit-appearance: none;
 }
 
-.input-regis::placeholder,
-input::placeholder {
+.input-regis::placeholder {
   color: hsl(0deg 0% 0%);
   font-size: 0.9em;
 }
 
-.input-regis:focus,
-input:focus {
+.input-regis:focus {
   box-shadow: inset 1px 1px 2px var(--color-shadow), inset -1px -1px 2px var(--color-white);
 }
 
@@ -146,8 +143,7 @@ input:focus {
     width: 100%;
   }
 
-  .input-regis,
-  input {
+  .input-regis {
     padding: 0.8em;
     margin-bottom: 15px;
     border-radius: 15px;
@@ -177,8 +173,7 @@ input:focus {
     height: 80px;
   }
 
-  .input-regis,
-  input {
+  .input-regis {
     padding: 0.6em;
     margin-bottom: 10px;
     border-radius: 10px;
