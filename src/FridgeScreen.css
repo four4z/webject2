@@ -224,8 +224,14 @@
   height: 60vh;
 }
 
+.edit-profile{
+  margin-bottom: -10px;
+  margin-top: -10px;
+}
+
 .profile-container.editing {
-  height: 75vh;
+  height: 80vh;
+  top: 12%;
 }
 
 .profile-container.slide-out {
@@ -649,6 +655,10 @@ form .form-row .textarea{
   outline: none; /* Remove default outline */
   box-shadow: 0 0 5px rgba(102, 175, 233, 0.6); /* Add a shadow for better appearance */
   margin-bottom: -3px;
+}
+.nav-logo {
+  width: 9%;
+  margin-left: 2%;
 }
 
 @media (max-width: 700px) {

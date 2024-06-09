@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './FridgeScreen.css';
+import logo from './fridge-transparent.png'
 
 const ProfileScreen = ({ togglePopup }) => {
   const location = useLocation();
@@ -80,9 +81,9 @@ const ProfileScreen = ({ togglePopup }) => {
         </div>
       </div>
       <div className="col-md-9 profile-settings-section">
-        <div className="p-3 py-5">
-          <div className="row mt-2">
-            <div className="col-md-6">
+        <div className="">
+          <div className="row mt-2 edit-profile">
+            <div className="col-md-6 edit-profile">
               <label className="labels">Username</label>
               {isEditing ? (
                 <input
@@ -317,7 +318,7 @@ const FridgeScreen = () => {
   return (
     <div className="fridge-screen">
       <div className="navbar">
-        <h1>Fridge App</h1>
+        <img src={logo} alt="Fridge Logo" className='nav-logo'/>
         <div className="navbar-buttons">
           <button onClick={togglePopup} className="profile-button2">Profile</button>
           <button className="logout-button" onClick={handleLogout}>Logout</button>
