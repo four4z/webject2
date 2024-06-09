@@ -7,7 +7,7 @@ const WelcomeScreen = () => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    navigate('/register');
+    navigate('/signin');
   };
 
   return (
