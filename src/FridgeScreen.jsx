@@ -222,6 +222,7 @@ const ProfileScreen = ({ togglePopup }) => {
   );
 };
 
+
 const FridgeScreen = () => {
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState('');
