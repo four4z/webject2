@@ -183,6 +183,11 @@ app.post('/api/editaccount', async (req, res) => {
         const decode = jwt.verify(token, secret);
         const id = decode.id;
 
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+          return res.status(400).json({ error: 'Password does not match' });
+        }
+        
         if (!db) {
             console.error('Database connection not established');
             return res.status(500).json({ error: 'Database connection not established' });
