@@ -18,7 +18,7 @@ let client;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors({ credentials: true, origin: ['http://localhost:5500'] }));
+app.use(cors({ credentials: true, origin: ['http://localhost:5173'] }));
 
 async function connectDB() {
     try {
@@ -86,7 +86,7 @@ app.post('/api/signup', upload.none(), async (req, res) => {
         };
 
         await db.collection('users').insertOne(createUser);
-        res.redirect('/profile');
+        res.status(201).json({ message: 'User created successfully' });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -94,36 +94,34 @@ app.post('/api/signup', upload.none(), async (req, res) => {
 });
 
 
-app.post('/api/login', upload.none(), async (req, res) => {
+app.post('/api/login', async (req, res) => {
     try {
-        const { email, password } = req.body;
-
-        if (!db) {
-            console.error('Database connection not established');
-            return res.status(500).json({ error: 'Database connection not established' });
-        }
-
-        const findEmail = await db.collection('users').findOne({ email });
-        if (!findEmail) {
-            return res.status(400).json({ error: 'Email not found' });
-        }
-
-        const match = await matchPassword(password, findEmail.password);
-        if (!match) {
-            return res.status(400).json({ error: 'Password does not match' });
-        }
-
-        const payload = { id: findEmail._id, role: findEmail.role };
-        const token = jwt.sign(payload, secret, { expiresIn: '1h' });
-        res.cookie('token', token, { httpOnly: true });
-
-        res.redirect('/home');
+      const { email, password } = req.body;
+  
+      if (!db) {
+        console.error('Database connection not established');
+        return res.status(500).json({ error: 'Database connection not established' });
+      }
+  
+      const user = await db.collection('users').findOne({ email });
+      if (!user) {
+        return res.status(400).json({ error: 'Email not found' });
+      }
+  
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
+        return res.status(400).json({ error: 'Password does not match' });
+      }
+  
+      const payload = { id: user._id, role: user.role };
+      const token = jwt.sign(payload, secret, { expiresIn: '1h' });
+      res.cookie('token', token, { httpOnly: true });
+      res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: 'Something went wrong' });
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Something went wrong' });
     }
-});
-
+  });
 
 app.put('/api/changepassword', async (req, res) => {
     try {
