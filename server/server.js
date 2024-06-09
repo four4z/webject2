@@ -52,6 +52,16 @@ const hashPassword = async (password) => {
     }
 };
 
+const authenticateToken = (req, res, next) => {
+    const token = req.header('Authorization')?.split(' ')[1];
+    if (!token) return res.sendStatus(401);
+
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user; // Add user data to request object
+        next();
+    });
+};
 
 const matchPassword = async (password, hash) => {
     try {
@@ -282,33 +292,30 @@ app.post('/api/joinFridge', async (req, res) => {
     }
 });
 
-app.post('/api/createFridge', async (req, res) => {
+app.post('/api/createFridge', authenticateToken, async (req, res) => {
     try {
-        const { name, owner } = req.body;
+        const userId = req.user.id; 
 
         if (!db) {
             console.error('Database connection not established');
             return res.status(500).json({ error: 'Database connection not established' });
         }
 
-        if (!name || !owner) {
-            return res.status(400).send({ message: "Please enter fridge name and owner" });
-        }
-
-        const joinKey = uuidv4(); // Generate a unique join key
+        const joinKey = uuidv4();
 
         const fridgeData = {
-            name,
-            owner,
+            name: `Fridge-${joinKey}`, 
+            owner: userId,
             joinKey,
-            members: [owner], // Initialize with the owner as a member
+            members: [userId],
             items: []
         };
 
         const result = await db.collection("fridges").insertOne(fridgeData);
-        res.status(200).send({ result, joinKey }); // Send the join key to the client
+        res.status(200).send({ result, joinKey });
     } catch (error) {
         console.error('Error:', error);
+        res.status(500).json({ error: 'An error occurred while creating the fridge' });
     }
 });
 
