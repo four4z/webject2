@@ -84,7 +84,7 @@
   max-height: 500px; /* Set a fixed height to allow scrolling */
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden; /* Hide horizontal scrolling */
-  margin-top: 60px;
+  margin-top:20px;
   margin-left: -105vh;
   border: 2px solid #000;
   border-radius: 10px;
@@ -604,6 +604,53 @@ form .form-row .textarea{
   height: 100%; /* Added */
   outline: none; /* Added */
 }
+
+.selected-fridge-text {
+  position: absolute;
+  margin-top:8% ;
+  margin-right: 80%; /* Space between the text and the dropdown */
+  font-size: 16px; /* Match the font size of the dropdown */
+  color: #ffffff; /* Text color */
+}
+
+/* Styling the select dropdown */
+.select-fridge {
+  width: 150px; /* Set the width of the dropdown */
+  padding: 10px; /* Add some padding for better appearance */
+  font-size: 16px; /* Set the font size */
+  color: #333; /* Text color */
+  background-color: #f9f9f9; /* Background color */
+  border: 1px solid #ccc; /* Border style */
+  border-radius: 5px; /* Rounded corners */
+  appearance: none; /* Remove default arrow icon */
+  -webkit-appearance: none; /* Remove default arrow icon for Safari */
+  -moz-appearance: none; /* Remove default arrow icon for Firefox */
+  position: relative; /* For positioning the custom arrow */
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iNCIgdmlld0JveD0iMCAwIDEwIDQiIHZlcnNpb249IjEuMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuNTYwODMsMC41OTIxODMgTDUuMjg0OTIsMy4yOTY5NiBMOC40MzM3OCwwLjU5MjE4MyIgZmlsbD0iIzMzMyIgLz4KPC9zdmc+Cg=='); /* Custom arrow icon */
+  background-repeat: no-repeat; /* Prevent repeating the icon */
+  background-position: right 10px top 50%; /* Position the icon */
+  background-size: 10px 10px; /* Size of the icon */
+  margin-left: -55%; 
+  margin-top: 2%;
+}
+
+/* Styling the options in the dropdown */
+.select-fridge option {
+  font-size: 16px; /* Set the font size */
+  padding: 10px; /* Add some padding */ 
+  color: #333333; /* Text color */
+  background-color: #f9f9f9; /* Background color */
+}
+
+/* Optional: Add some styles for when the dropdown is focused */
+.select-fridge:focus {
+  border-color: #66afe9; /* Change border color on focus */
+  border-width: 3px;
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.6); /* Add a shadow for better appearance */
+  margin-bottom: -3px;
+}
+
 @media (max-width: 700px) {
   .container .text{
     font-size: 30px;
