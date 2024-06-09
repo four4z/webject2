@@ -14,6 +14,7 @@ const ProfileScreen = ({ togglePopup }) => {
     const [isCreateFridge, setIsCreateFridge] = useState(true);
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const [isPasswordVerified, setIsPasswordVerified] = useState(false);
+    const [clipboardStatus, setClipboardStatus] = useState('');
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -29,7 +30,6 @@ const ProfileScreen = ({ togglePopup }) => {
         fetchUserData();
     }, []);
     
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setTempProfile((prevTempProfile) => ({ ...prevTempProfile, [name]: value }));
@@ -61,33 +61,52 @@ const handleCancel = () => {
     setIsEditing(false);
 };
 
-
-    const handleGenerateCode = async () => {
-        if (!fridgeName) {
-            alert('Please enter a fridge name');
-            return;
-        }
-        try {
-            const response = await axios.post('http://localhost:3000/api/createFridge', {
-                name: fridgeName,
-                owner: profile.username,
-            }, { withCredentials: true });
-            setGeneratedCode(response.data.joinKey);
-        } catch (error) {
-            console.error('Error generating join key:', error);
-            alert('Failed to generate join key. Please try again.');
-        }
-    };
+const handleGenerateCode = async () => {
+    if (!fridgeName) {
+        alert('Please enter a fridge name');
+        return;
+    }
+    try {
+        const response = await axios.post('http://localhost:3000/api/createFridge', {
+            name: fridgeName, // Send the fridge name
+        }, { withCredentials: true });
+        const joinKey = response.data.joinKey;
+        setGeneratedCode(joinKey);
+        await navigator.clipboard.writeText(joinKey);
+        setClipboardStatus('Join key copied to clipboard!');
+    } catch (error) {
+        console.error('Error generating join key:', error);
+        setClipboardStatus('Failed to copy join key. Please try again.');
+    }
+};
 
     const handleJoinFridge = async (e) => {
         e.preventDefault();
         setShowSuccessPopup(true);
     };
 
-    const handleSuccessPopupClose = () => {
-        setShowSuccessPopup(false);
-        setShowFridge(false);
+    const handleCreateFridge = async () => {
+        try {
+            const response = await axios.post('http://localhost:3000/api/createFridge', { name: fridgeName });
+            const { joinKey } = response.data;
+            setJoinKey(joinKey);
+            setSuccessPopup(true);
+            setCopied(false);
+        } catch (error) {
+            console.error('Error creating fridge:', error);
+        }
     };
+
+    const handleSuccessPopupClose = () => {
+        setSuccessPopup(false);
+        setJoinKey('');
+        setCopied(false);
+    };
+
+    // const handleSuccessPopupClose = () => {
+    //     setShowSuccessPopup(false);
+    //     setShowFridge(false);
+    // };
 
     const verifyPassword = async () => {
         try {
@@ -208,12 +227,14 @@ const handleCancel = () => {
                                 value={fridgeName}
                                 onChange={(e) => setFridgeName(e.target.value)}
                             />
+                            
                             <button className="btn btn-primary mt-2" onClick={handleGenerateCode}>
                                 Generate Join Key
                             </button>
                             {generatedCode && (
                                 <div className="generated-code mt-2">
                                     <strong>Join Key:</strong> {generatedCode}
+                                    <div className="clipboard-status">{clipboardStatus}</div>
                                 </div>
                             )}
                         </div>

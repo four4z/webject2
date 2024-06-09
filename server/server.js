@@ -210,14 +210,14 @@ app.get('/api/checkToken', (req, res) => {
 
 app.post('/api/editaccount', async (req, res) => {
     try {
-        const {firstName, email, password } = req.body;
+        const {username, email, password } = req.body;
 
-        if ( !firstName || !email || !password) {
+        if ( !username || !email || !password) {
             return res.status(400).send({ error: 'Missing required fields' });
         }
 
         // Update user profile in the database
-        const result = await updateUserProfile( { firstName, email, password });
+        const result = await updateUserProfile( { username, email, password });
         if (result) {
             res.status(200).send({ message: 'Profile updated successfully' });
         } else {
@@ -329,7 +329,8 @@ app.post('/api/joinFridge', async (req, res) => {
 
 app.post('/api/createFridge', authenticateToken, async (req, res) => {
     try {
-        const userId = req.user.id; 
+        const userId = req.user.id;
+        const { name } = req.body; // Get the name from the request body
 
         if (!db) {
             console.error('Database connection not established');
@@ -339,7 +340,7 @@ app.post('/api/createFridge', authenticateToken, async (req, res) => {
         const joinKey = uuidv4();
 
         const fridgeData = {
-            name: `Fridge-${joinKey}`, 
+            name, // Use the provided name
             owner: userId,
             joinKey,
             members: [userId],
@@ -353,6 +354,7 @@ app.post('/api/createFridge', authenticateToken, async (req, res) => {
         res.status(500).json({ error: 'An error occurred while creating the fridge' });
     }
 });
+
 
 app.put('/editFridge/:id', async (req, res) => {
     try {
@@ -391,6 +393,35 @@ app.delete('/deleteFridge/:id', async (req, res) => {
         console.error('Error:', error);
     }
 });
+
+app.get('/fridges', async (req, res) => {
+try {
+    const fridges = await Fridge.find({}, 'name');
+    const fridgeNames = fridges.map(fridge => fridge.name);
+    res.json(fridgeNames);
+} catch (error) {
+    console.error('Error fetching fridge names:', error);
+    res.status(500).json({ message: 'Internal server error' });
+}
+});
+
+
+
+app.get('/api/fridgeNames', async (req, res) => {
+    try {
+        if (!db) {
+            console.error('Database connection not established');
+            return res.status(500).json({ error: 'Database connection not established' });
+        }
+
+        const fridgeNames = await db.collection("fridges").distinct("name");
+        res.status(200).json({ fridgeNames });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 app.post('/addItem', async (req, res) => {
     try {
