@@ -7,9 +7,9 @@ import ProfileScreen from './ProfileScreen.jsx';
 
 const FridgeScreen = () => {
   const [items, setItems] = useState([
-    { name: 'Milk', quantity: 2, expiryDate: '2023-07-01', note: "" },
-    { name: 'Eggs', quantity: 12, expiryDate: '2023-07-10', note: "" },
-    { name: 'Butter', quantity: 1, expiryDate: '2023-07-15', note: "" },
+    { name: 'Milk', quantity: 2, expiryDate: '2023-07-01', note: "aaaaa" },
+    { name: 'Eggs', quantity: 12, expiryDate: '2023-07-10', note: "bbb" },
+    { name: 'Butter', quantity: 1, expiryDate: '2023-07-15', note: "ccc" },
   ]);
   const [newItem, setNewItem] = useState('');
   const [quantity, setQuantity] = useState(1);
