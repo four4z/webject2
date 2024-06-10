@@ -247,12 +247,13 @@ app.post('/api/editaccount', async (req, res) => {
     }
 });
 
-
 app.get('/api/logout', (req, res) => {
     try {
-        res.clearCookie('token');
+        res.clearCookie('token'); 
+        res.status(200).send({ message: 'Logout successful' });
     } catch (error) {
-        console.error('Error:', error);
+        console.log(error);
+        res.status(500).send({ error: 'Logout failed' });
     }
 });
 

@@ -18,14 +18,14 @@ const FridgeScreen = () => {
   const itemsPerPage = 7;
   const [nearExpiryItems, setNearExpiryItems] = useState([]);
   const [selectedFridge, setSelectedFridge] = useState('volvo');
-  const [fridgeNames, setFridgeNames] = useState([]); // Initialize the fridgeNames state
+  const [fridgeNames, setFridgeNames] = useState([]); 
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/items'); // Update this URL to match your API
+        const response = await axios.get('http://localhost:3000/api/items');
         setItems(response.data);
       } catch (error) {
         console.error('Error fetching items:', error);
@@ -72,12 +72,12 @@ const FridgeScreen = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:3000/api/logout');
-      navigate('/');
+        await axios.get('http://localhost:3000/api/logout', { withCredentials: true }); 
+        navigate('/');
     } catch (error) {
-      console.error('Error logging out:', error);
+        console.error('Error logging out:', error);
     }
-  };
+};
 
   const togglePopup = () => {
     setPopupVisibility(!isPopupVisible);
