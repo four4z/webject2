@@ -6,7 +6,11 @@ import logo from './fridge-transparent.png';
 import ProfileScreen from './ProfileScreen.jsx';
 
 const FridgeScreen = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([
+    { name: 'Milk', quantity: 2, expiryDate: '2023-07-01', note: "" },
+    { name: 'Eggs', quantity: 12, expiryDate: '2023-07-10', note: "" },
+    { name: 'Butter', quantity: 1, expiryDate: '2023-07-15', note: "" },
+  ]);
   const [newItem, setNewItem] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [expiryDate, setExpiryDate] = useState('');
@@ -47,27 +51,16 @@ const FridgeScreen = () => {
 
   const addItem = async () => {
     if (newItem && expiryDate) {
-      const newItemObj = { name: newItem, quantity, expiryDate, note };
-      try {
-        const response = await axios.post('http://localhost:3000/api/items', newItemObj); // Update this URL to match your API
-        setItems([...items, response.data]);
-        setNewItem('');
-        setQuantity(1);
-        setExpiryDate('');
-        setNote('');
-      } catch (error) {
-        console.error('Error adding item:', error);
-      }
+      setItems([...items, { name: newItem, quantity, expiryDate, note }]);
+      setNewItem('');
+      setQuantity(1);
+      setExpiryDate('');
+      setNote('');
     }
   };
 
-  const removeItem = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3000/api/items/${id}`); // Update this URL to match your API
-      setItems(items.filter(item => item.id !== id));
-    } catch (error) {
-      console.error('Error removing item:', error);
-    }
+  const removeItem = (index) => {
+    setItems(items.filter((_, i) => i !== index));
   };
 
   const handleLogout = async () => {
@@ -157,7 +150,7 @@ const FridgeScreen = () => {
             <p>Quantity: {item.quantity}</p>
             <p>Expiry Date: {item.expiryDate}</p>
             <button onClick={() => toggleNotePopup(item.note)}>Note</button>
-            <button onClick={() => removeItem(item.id)}>Remove</button>
+            <button onClick={() => removeItem(index)}>Remove</button>
           </div>
         ))}
       </div>
