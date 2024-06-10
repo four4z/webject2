@@ -18,7 +18,7 @@
 .navbar {
   width: 100%;
   height: 60px;
-  background-color: #f78800; /* Updated background color */
+  background-color: #f78800; 
   color: white;
   display: flex;
   justify-content: space-between;
@@ -29,7 +29,6 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  /* Add a white vertical line */
   position: relative;
 }
 
@@ -45,7 +44,7 @@
 }
 
 .logout-button, .profile-button2 {
-  background-color: transparent; /* Change background color to transparent */
+  background-color: transparent; 
   border: none;
   color: white;
   padding: 7px 20px;
@@ -62,7 +61,7 @@
   height: 7vh;
 }
 
-/* Add more specificity to the profile button */
+
 .navbar-buttons .profile-button2 {
   background-color: transparent;
 }
@@ -81,9 +80,9 @@
   flex-direction: column;
   align-items: center;
   width: 40%;
-  max-height: 500px; /* Set a fixed height to allow scrolling */
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: hidden; /* Hide horizontal scrolling */
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-top:20px;
   margin-left: -105vh;
   border: 2px solid #000;
@@ -102,7 +101,7 @@
   border: 1px solid red;
   padding: 5px;
   margin-bottom: 5px;
-  box-sizing: border-box; /* Ensure padding and border are included in the element's total width */
+  box-sizing: border-box; 
   color: white;
 }
 
@@ -110,18 +109,12 @@
   position: absolute;
   width: 45%;
   height: 45%;
-  /* background-color: #ADD8E6; */
   background-color: white;
   border: 2px solid rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* justify-content: center; */
   align-items: center;
-  /* padding: 10px;
-  box-sizing: border-box;
-  margin-top: 420px;
-  margin-left: 700px; */
   padding: 20px;
   box-sizing: border-box;
   margin-top: 400px;
@@ -157,8 +150,8 @@
   margin-bottom: 10px;
   padding: 5px;
   font-size: 14px;
-  width: calc(100% - 12px); /* Ensure inputs don't overflow the container */
-  box-sizing: border-box; /* Ensure padding and border are included in the element's total width */
+  width: calc(100% - 12px); 
+  box-sizing: border-box; 
 }
 
 .add-item button {
@@ -259,7 +252,7 @@
 }
 
 .btn-group .btn {
-  width: 150px; /* Fixed width for both buttons */
+  width: 150px;
   margin: 0 10px;
   transition: background 0.3s ease;
 }
@@ -401,12 +394,12 @@
 .btn-group .btn:hover {
   background: #682773;
 }
-/* Add this style for consistent width of input fields */
+
 .fridge-container .form-control {
-  width: calc(100% - 20px); /* Adjust based on container padding */
+  width: calc(100% - 20px);
 }
 
-/* Adjusted styles for the Confirm button */
+
 .fridge-container .btn-confirm {
   background: #007bff;
   color: white;
@@ -415,7 +408,7 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
-  width: calc(100% - 40px); /* Adjust based on container padding and margins */
+  width: calc(100% - 40px); 
   transition: background 0.3s ease;
 }
 
@@ -426,8 +419,8 @@
   box-shadow: none;
 }
 .near-expiry {
-  background-color: rgba(0, 255, 0, 0.2); /* Change background color to green */
-  border-color: green; /* Change border color to green */
+  background-color: rgba(0, 255, 0, 0.2); 
+  border-color: green; 
 }
 
 .note-popup {
@@ -508,7 +501,7 @@ form .form-row .textarea{
   border: none;
   font-size: 17px;
   background-color: white;
-  /* border-bottom: 2px solid rgba(0,0,0, 0.12); */
+
 }
 .input-data .input2:focus ~ label, .textarea textarea:focus ~ label,
 .input-data .input2:valid ~ label, .textarea textarea:valid ~ label{
@@ -576,7 +569,7 @@ form .form-row .textarea{
   overflow: hidden;
   height: 30px !important;
   width: 15% !important;
-  position: absolute; /* Added */
+  position: absolute; 
   left: 43%;
 }
 
@@ -604,54 +597,54 @@ form .form-row .textarea{
   cursor: pointer;
   position: relative;
   z-index: 2;
-  width: 100%; /* Added */
-  height: 100%; /* Added */
-  outline: none; /* Added */
+  width: 100%; 
+  height: 100%;
+  outline: none; 
 }
 
 .selected-fridge-text {
   position: absolute;
   margin-top:8% ;
-  margin-right: 80%; /* Space between the text and the dropdown */
-  font-size: 16px; /* Match the font size of the dropdown */
-  color: #ffffff; /* Text color */
+  margin-right: 80%; 
+  font-size: 16px;
+  color: #ffffff; 
 }
 
-/* Styling the select dropdown */
+
 .select-fridge {
-  width: 150px; /* Set the width of the dropdown */
-  padding: 10px; /* Add some padding for better appearance */
-  font-size: 16px; /* Set the font size */
-  color: #333; /* Text color */
-  background-color: #f9f9f9; /* Background color */
-  border: 1px solid #ccc; /* Border style */
-  border-radius: 5px; /* Rounded corners */
-  appearance: none; /* Remove default arrow icon */
-  -webkit-appearance: none; /* Remove default arrow icon for Safari */
-  -moz-appearance: none; /* Remove default arrow icon for Firefox */
-  position: relative; /* For positioning the custom arrow */
+  width: 150px; 
+  padding: 10px; 
+  font-size: 16px; 
+  color: #333; 
+  background-color: #f9f9f9; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  position: relative;
   background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iNCIgdmlld0JveD0iMCAwIDEwIDQiIHZlcnNpb249IjEuMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEuNTYwODMsMC41OTIxODMgTDUuMjg0OTIsMy4yOTY5NiBMOC40MzM3OCwwLjU5MjE4MyIgZmlsbD0iIzMzMyIgLz4KPC9zdmc+Cg=='); /* Custom arrow icon */
-  background-repeat: no-repeat; /* Prevent repeating the icon */
-  background-position: right 10px top 50%; /* Position the icon */
-  background-size: 10px 10px; /* Size of the icon */
+  background-repeat: no-repeat; 
+  background-position: right 10px top 50%; 
+  background-size: 10px 10px; 
   margin-left: -55%; 
   margin-top: 2%;
 }
 
-/* Styling the options in the dropdown */
+
 .select-fridge option {
-  font-size: 16px; /* Set the font size */
-  padding: 10px; /* Add some padding */ 
-  color: #333333; /* Text color */
-  background-color: #f9f9f9; /* Background color */
+  font-size: 16px;
+  padding: 10px;
+  color: #333333; 
+  background-color: #f9f9f9; 
 }
 
-/* Optional: Add some styles for when the dropdown is focused */
+
 .select-fridge:focus {
-  border-color: #66afe9; /* Change border color on focus */
+  border-color: #66afe9; 
   border-width: 3px;
-  outline: none; /* Remove default outline */
-  box-shadow: 0 0 5px rgba(102, 175, 233, 0.6); /* Add a shadow for better appearance */
+  outline: none;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.6); 
   margin-bottom: -3px;
 }
 .nav-logo {

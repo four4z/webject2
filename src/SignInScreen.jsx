@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './Register.module.css'; 
-import logo from './fridge-transparent.png'; // Import the image
+import logo from './fridge-transparent.png'; 
 
 const SignInScreen = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const SignInScreen = () => {
     event.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/api/login', { email, password }, {
-        withCredentials: true // Include credentials to ensure cookies are sent
+        withCredentials: true 
       });
       console.log('Login successful:', response.data);
       navigate('/fridge', { state: response.data });
@@ -34,7 +34,7 @@ const SignInScreen = () => {
   return (
     <div className={styles['register-screen-container']}>
       <div className={styles['screen-2']}>
-        <img className={styles.logo} src={logo} alt="Logo" /> {/* Use the imported image */}
+        <img className={styles.logo} src={logo} alt="Logo" /> 
         <h2 className={styles['text']}>Sign In</h2>
         <form onSubmit={handleLoginSubmit}>
           <input

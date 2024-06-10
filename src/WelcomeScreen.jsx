@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WelcomeScreen.css'; 
-import bg from './image_fridge1.png'; // Import the image
+import bg from './image_fridge1.png';
 
 const WelcomeScreen = () => {
   const navigate = useNavigate();

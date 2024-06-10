@@ -131,7 +131,6 @@ const FridgeScreen = () => {
           </div>
         </div>
       )}
-      <div className="noti">RED FOR ITEMLIST PURPLE FOR NEAR EXPIRE WHITE FOR ADDITEM.</div>
       <span className="selected-fridge-text">Selected fridge: {selectedFridge.charAt(0).toUpperCase() + selectedFridge.slice(1)}</span>
       <select className="select-fridge" onChange={handleChange} value={selectedFridge}>
       <option value="" disabled>Select a fridge</option>
