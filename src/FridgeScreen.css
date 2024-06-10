@@ -477,8 +477,15 @@
   margin-bottom: 20px;
 }
 
-
-
+.noti-expire {
+  font-size: 24px; 
+  color: #333; 
+  margin: 0;
+  position: absolute; 
+  top: 30px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+}
 
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
