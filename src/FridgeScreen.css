@@ -133,7 +133,7 @@
   position: absolute;
   width: 45%;
   height: 40%;
-  background: rgb(148, 57, 181);
+  background: rgb(218, 162, 73);
   border: 2px solid green;
   display: flex;
   justify-content: center;
@@ -142,6 +142,7 @@
   box-sizing: border-box;
   margin-top: 110px;
   margin-left: 700px;
+  border-radius: 10px;
 }
 
 .add-item {

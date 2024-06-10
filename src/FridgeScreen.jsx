@@ -21,8 +21,9 @@ const FridgeScreen = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
   const [nearExpiryItems, setNearExpiryItems] = useState([]);
-  const [selectedFridge, setSelectedFridge] = useState('volvo');
+  const [selectedFridge, setSelectedFridge] = useState('Myfridge');
   const [fridgeNames, setFridgeNames] = useState([]); 
+  
 
   const navigate = useNavigate();
 
@@ -132,11 +133,12 @@ const FridgeScreen = () => {
       )}
       <div className="noti">RED FOR ITEMLIST PURPLE FOR NEAR EXPIRE WHITE FOR ADDITEM.</div>
       <span className="selected-fridge-text">Selected fridge: {selectedFridge.charAt(0).toUpperCase() + selectedFridge.slice(1)}</span>
-                  <select className="select-fridge">
-                {fridgeNames.map((name, index) => (
-                    <option key={index} value={name}>{name}</option>
-                ))}
-            </select>
+      <select className="select-fridge" onChange={handleChange} value={selectedFridge}>
+      <option value="" disabled>Select a fridge</option>
+      {fridgeNames.map((name, index) => (
+        <option key={index} value={name}>{name}</option>
+      ))}
+    </select>
       <div className="fridge">
         {items.map((item, index) => (
           <div className={`red-box red-box-${index + 1}`} key={index}>
