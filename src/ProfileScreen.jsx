@@ -112,10 +112,6 @@ const handleGenerateCode = async () => {
         setCopied(false);
     };
 
-    // const handleSuccessPopupClose = () => {
-    //     setShowSuccessPopup(false);
-    //     setShowFridge(false);
-    // };
 
     const verifyPassword = async () => {
         try {
@@ -125,11 +121,9 @@ const handleGenerateCode = async () => {
             if (response.data.match) {
                 setIsPasswordVerified(true);
                 alert('Password verified successfully!');
-            } else {
-                alert('Incorrect password!');
-            }
+            } 
         } catch (error) {
-            console.error('Error verifying password:', error);
+            alert('Incorrect password!', error);
         }
     };
 
@@ -161,19 +155,8 @@ const handleGenerateCode = async () => {
                                 )}
                             </div>
                             <div className="col-md-6">
-                                <label className="labels">Email</label>
-                                {isEditing ? (
-                                    <input
-                                        type="email"
-                                        className="form-control"
-                                        placeholder="email"
-                                        name="email"
-                                        value={tempProfile.email}
-                                        onChange={handleChange}
-                                    />
-                                ) : (
-                                    <div className="display-field">{profile.email}</div>
-                                )}
+                            <label className="labels">Email</label>
+                            <div className="display-field">{profile.email}</div>
                             </div>
                         </div>
                         {isEditing && (

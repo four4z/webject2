@@ -61,7 +61,7 @@ const updateUserProfile = async ({ username, email }) => {
         }
 
         const result = await db.collection('users').updateOne(
-            { email },
+            { $set: {email }},
             { $set: { username } }
         );
 
