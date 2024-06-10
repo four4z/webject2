@@ -128,7 +128,7 @@ const FridgeScreen = () => {
         <div className="note-popup">
           <div className="popup-content">
             <p>{currentNote}</p>
-            <button className="btn btn-primary" onClick={() => setNotePopupVisibility(false)}>Close</button>
+            <button className="btn btn-primary bth-note" onClick={() => setNotePopupVisibility(false)}>Close</button>
           </div>
         </div>
       )}
