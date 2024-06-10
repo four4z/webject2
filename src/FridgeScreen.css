@@ -125,8 +125,8 @@
 .green-box {
   position: absolute;
   width: 45%;
-  height: 40%;
-  background: rgb(218, 162, 73);
+  height: 38%;
+  background: rgb(211, 170, 103);
   border: 2px solid green;
   display: flex;
   justify-content: center;
@@ -628,7 +628,7 @@ form .form-row .textarea{
   background-position: right 10px top 50%; 
   background-size: 10px 10px; 
   margin-left: -55%; 
-  margin-top: 2%;
+  margin-top: 3%;
 }
 
 

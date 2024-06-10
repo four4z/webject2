@@ -4,6 +4,7 @@ import axios from 'axios';
 import './FridgeScreen.css';
 import logo from './fridge-transparent.png';
 import ProfileScreen from './ProfileScreen.jsx';
+import bg from './bg.jpg';
 
 const FridgeScreen = () => {
   const [items, setItems] = useState([
@@ -106,7 +107,7 @@ const FridgeScreen = () => {
   };
 
   return (
-    <div className="fridge-screen">
+    <div className="fridge-screen" style={{ backgroundImage: `url(${bg})` }}>
       <div className="navbar">
         <img src={logo} alt="Fridge Logo" className='nav-logo' />
         <div className="navbar-buttons">
@@ -133,7 +134,7 @@ const FridgeScreen = () => {
       )}
       <span className="selected-fridge-text">Selected fridge: {selectedFridge.charAt(0).toUpperCase() + selectedFridge.slice(1)}</span>
       <select className="select-fridge" onChange={handleChange} value={selectedFridge}>
-      <option value="" disabled>Select a fridge</option>
+      <option value="" >MyFridge</option>
       {fridgeNames.map((name, index) => (
         <option key={index} value={name}>{name}</option>
       ))}
