@@ -130,14 +130,8 @@ const FridgeScreen = () => {
           </div>
         </div>
       )}
-      <div className="noti">Placeholder text for notification or additional content.</div>
+      <div className="noti">RED FOR ITEMLIST PURPLE FOR NEAR EXPIRE WHITE FOR ADDITEM.</div>
       <span className="selected-fridge-text">Selected fridge: {selectedFridge.charAt(0).toUpperCase() + selectedFridge.slice(1)}</span>
-      {/* <select className="select-fridge" onChange={handleChange} value={selectedFridge}>
-        <option value="">Select a fridge</option>
-        {fridgeNames.map((fridgeName, index) => (
-          <option key={index} value={fridgeName}>{fridgeName}</option>
-        ))}
-      </select> */}
                   <select className="select-fridge">
                 {fridgeNames.map((name, index) => (
                     <option key={index} value={name}>{name}</option>
