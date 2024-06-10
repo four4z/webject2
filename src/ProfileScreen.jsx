@@ -42,18 +42,27 @@ const ProfileScreen = ({ togglePopup }) => {
         }
     
         try {
-            const profileData = { ...tempProfile}; // Ensure id is included
+            const profileData = { ...tempProfile }; // Ensure id is included
             console.log('Saving profile data:', profileData); // Debug information
-            await axios.post('http://localhost:3000/api/editaccount', profileData, { withCredentials: true });
+    
+            const response = await axios.post('http://localhost:3000/api/editaccount', profileData, { withCredentials: true });
+            console.log('Profile updated successfully:', response.data);
+    
             setProfile(tempProfile);
             setIsEditing(false);
             setIsPasswordVerified(false);
             alert('Profile updated successfully!');
         } catch (error) {
             console.error('Error saving profile:', error);
-            alert('Failed to update profile. Please try again.');
+    
+            // Display detailed error message
+            const errorMessage = error.response && error.response.data && error.response.data.error
+                ? error.response.data.error
+                : 'Failed to update profile. Please try again.';
+            alert(errorMessage);
         }
     };
+    
     
 
 const handleCancel = () => {

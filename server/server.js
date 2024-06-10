@@ -52,6 +52,26 @@ const hashPassword = async (password) => {
     }
 };
 
+const updateUserProfile = async ({ username, email }) => {
+    try {
+        const user = await db.collection('users').findOne({ email });
+
+        if (!user) {
+            return { success: false, error: 'User not found' };
+        }
+
+        const result = await db.collection('users').updateOne(
+            { email },
+            { $set: { username } }
+        );
+
+        return { success: true };
+    } catch (error) {
+        console.error('Database error:', error.message, error.stack);
+        return { success: false, error: 'Database error' };
+    }
+};
+
 const authenticateToken = (req, res, next) => {
     const token = req.cookies.token;
     if (!token) return res.sendStatus(401);
@@ -120,7 +140,6 @@ app.post('/api/signup', upload.none(), async (req, res) => {
             email,
             username,
             password: hashedPassword,
-            profile_image: { data: Buffer, contentType: String },
             role: 'user',
         };
 
@@ -205,34 +224,28 @@ app.get('/api/checkToken', (req, res) => {
     }
 });
 
-
-
-
 app.post('/api/editaccount', async (req, res) => {
     try {
-        const {username, email, password } = req.body;
+        const { username, email } = req.body;
 
-        if ( !username || !email || !password) {
+        if (!username || !email) {
             return res.status(400).send({ error: 'Missing required fields' });
         }
 
-        // Update user profile in the database
-        const result = await updateUserProfile( { username, email, password });
-        if (result) {
+        console.log('Received request to update profile:', req.body);
+
+        const result = await updateUserProfile({ username, email });
+
+        if (result.success) {
             res.status(200).send({ message: 'Profile updated successfully' });
         } else {
-            res.status(500).send({ error: 'Failed to update profile' });
+            res.status(500).send({ error: 'Failed to update profile', details: result.error });
         }
     } catch (error) {
-        console.error('Error updating profile:', error);
-        res.status(500).send({ error: 'Server error' });
+        console.error('Error updating profile:', error.message, error.stack);
+        res.status(500).send({ error: 'Server error', details: error.message });
     }
 });
-
-
-
-
-
 
 
 app.get('/api/logout', (req, res) => {
